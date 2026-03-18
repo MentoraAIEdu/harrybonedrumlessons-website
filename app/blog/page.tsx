@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // Rebuild every hour
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -20,18 +19,8 @@ interface NotionPost {
 }
 
 async function getBlogPosts(): Promise<NotionPost[]> {
-  // Try Cloudflare runtime env first, then process.env (build time)
-  let notionKey = process.env.NOTION_API_KEY;
-  let databaseId = process.env.NOTION_BLOG_DATABASE_ID;
-
-  try {
-    const ctx = await getCloudflareContext({ async: true });
-    const cfEnv = ctx.env as Record<string, string>;
-    notionKey = cfEnv.NOTION_API_KEY || notionKey;
-    databaseId = cfEnv.NOTION_BLOG_DATABASE_ID || databaseId;
-  } catch {
-    // Not running on Cloudflare (e.g. local dev), use process.env
-  }
+  const notionKey = process.env.NOTION_API_KEY;
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
 
   if (!notionKey || !databaseId) {
     console.error("Blog: Missing env vars", {
@@ -52,7 +41,6 @@ async function getBlogPosts(): Promise<NotionPost[]> {
       sorts: [{ property: "Date", direction: "descending" }],
       page_size: 100,
     }),
-    next: { revalidate: 3600 },
   });
 
   if (!res.ok) {
