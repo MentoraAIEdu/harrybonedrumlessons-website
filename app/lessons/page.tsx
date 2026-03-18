@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Lessons & Pricing",
   description:
     "Drum lessons in Bristol — studio or mobile. From £20/session. Trial lesson £10. Rockschool prep, song-based learning, all ages welcome.",
+  openGraph: {
+    title: "Drum Lessons & Pricing | Harry Bone, Bristol",
+    description:
+      "From £20/session. Trial lesson £10. Studio or mobile. Rockschool prep, song-based learning, all ages.",
+    url: "https://harrybonedrumlessons.com/lessons",
+    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone Drum Lessons" }],
+  },
 };
 
 export default function LessonsPage() {
@@ -46,7 +53,7 @@ export default function LessonsPage() {
               },
               {
                 title: "Custom exercises",
-                desc: "When something's not clicking, I'll write exercises specifically for that challenge. No generic worksheets.",
+                desc: "You'll get a range of ready-made exercises I've built over the years to help my students. And if something new comes up that needs a fresh approach, I'll create something specifically for you. No generic worksheets.",
               },
               {
                 title: "Musical understanding",

@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Student Reviews",
   description:
     "What students and parents say about drum lessons with Harry Bone in Bristol.",
+  openGraph: {
+    title: "Student Reviews | Harry Bone Drum Lessons",
+    description:
+      "Read what students and parents say about drum lessons with Harry Bone in Bristol.",
+    url: "https://harrybonedrumlessons.com/reviews",
+    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone Drum Lessons" }],
+  },
 };
 
 export default function ReviewsPage() {

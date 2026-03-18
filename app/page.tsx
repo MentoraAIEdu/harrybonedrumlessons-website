@@ -302,9 +302,9 @@ export default function Home() {
               href="https://wa.me/447984263112"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
+              className="text-sm text-[var(--color-green)] font-medium hover:underline transition-colors"
             >
-              or WhatsApp me directly
+              or WhatsApp me directly &rarr;
             </a>
           </div>
         </div>

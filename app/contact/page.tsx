@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch with Harry Bone for drum lessons in Bristol. WhatsApp, email, or fill in the contact form.",
+  openGraph: {
+    title: "Contact | Harry Bone Drum Lessons",
+    description:
+      "Get in touch for drum lessons in Bristol. WhatsApp, email, or contact form. Trial lesson £10.",
+    url: "https://harrybonedrumlessons.com/contact",
+    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone Drum Lessons" }],
+  },
 };
 
 export default function ContactPage() {
@@ -29,17 +36,17 @@ export default function ContactPage() {
             href="https://wa.me/447984263112"
             target="_blank"
             rel="noopener noreferrer"
-            className="card-glow bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5 text-center transition-all duration-300 hover:border-[var(--color-green)]"
+            className="card-glow bg-[var(--color-card)] border-2 border-[var(--color-green)] rounded-xl p-5 text-center transition-all duration-300 hover:bg-[var(--color-green)] hover:text-white group"
           >
-            <p className="font-semibold text-[var(--color-foreground)] mb-1">WhatsApp</p>
-            <p className="text-sm text-[var(--color-muted)]">Quickest way to reach me</p>
+            <p className="font-semibold text-[var(--color-green)] mb-1 group-hover:text-white">Send a WhatsApp &rarr;</p>
+            <p className="text-sm text-[var(--color-muted)] group-hover:text-white/80">Quickest way to reach me</p>
           </a>
 
           <a
             href="mailto:harrybonedrumlessons@gmail.com"
-            className="card-glow bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5 text-center transition-all duration-300 hover:border-[var(--color-green)]"
+            className="card-glow bg-[var(--color-card)] border-2 border-[var(--color-card-border)] rounded-xl p-5 text-center transition-all duration-300 hover:border-[var(--color-green)] group"
           >
-            <p className="font-semibold text-[var(--color-foreground)] mb-1">Email</p>
+            <p className="font-semibold text-[var(--color-foreground)] mb-1 group-hover:text-[var(--color-green)]">Send an Email &rarr;</p>
             <p className="text-sm text-[var(--color-muted)] break-all">harrybonedrumlessons@gmail.com</p>
           </a>
 

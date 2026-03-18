@@ -4,6 +4,13 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "About Harry Bone — drum teacher in Bristol with a BMus from RWCMD, 20+ years drumming, and specialist training in Latin percussion from Cuba and Brazil.",
+  openGraph: {
+    title: "About Harry Bone | Drum Teacher in Bristol",
+    description:
+      "BMus (Hons) RWCMD, 20+ years drumming, Enhanced DBS checked. Latin percussion training in Cuba and Brazil.",
+    url: "https://harrybonedrumlessons.com/about",
+    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone" }],
+  },
 };
 
 export default function AboutPage() {
@@ -87,7 +94,7 @@ export default function AboutPage() {
               and always connected to real songs and real playing.
             </p>
             <p>
-              I&apos;m also building{" "}
+              I&apos;ve built{" "}
               <a
                 href="https://mentoraai.io"
                 target="_blank"
@@ -97,8 +104,8 @@ export default function AboutPage() {
                 PracticAI
               </a>
               , an AI practice app designed to help students keep progressing
-              between lessons. It&apos;s the coaching model I&apos;ve been building
-              in my head for years, now powered by technology.
+              between lessons. It&apos;s the coaching model I&apos;ve had in my
+              head for years, now powered by technology.
             </p>
           </div>
         </div>

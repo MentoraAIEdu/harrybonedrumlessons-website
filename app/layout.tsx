@@ -41,6 +41,21 @@ export const metadata: Metadata = {
     url: "https://harrybonedrumlessons.com",
     siteName: "Harry Bone Drum Lessons",
     type: "website",
+    images: [
+      {
+        url: "https://harrybonedrumlessons.com/harry-hero.jpg",
+        width: 800,
+        height: 500,
+        alt: "Harry Bone at the drum kit in his home studio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Harry Bone Drum Lessons | Bristol",
+    description:
+      "Professional drum lessons in Bristol. In-person at my home studio or I come to you. All ages, all levels.",
+    images: ["https://harrybonedrumlessons.com/harry-hero.jpg"],
   },
 };
 

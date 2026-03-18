@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Practical drum learning insights for parents and students. Tips on practice, technique, and progress from Harry Bone.",
+  openGraph: {
+    title: "Drum Blog | Harry Bone Drum Lessons",
+    description:
+      "Practical insights on learning drums — for parents and students. Tips on practice, technique, and progress.",
+    url: "https://harrybonedrumlessons.com/blog",
+    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone Drum Lessons" }],
+  },
 };
 
 interface NotionPost {
