@@ -323,7 +323,7 @@ export default function Home() {
                 Learn more about PracticAI &rarr;
               </a>
               <a
-                href="https://apps.apple.com/app/practicai/id6741419737"
+                href="https://apps.apple.com/app/practicai/id6753584431"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
