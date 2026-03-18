@@ -145,6 +145,9 @@ export default function Home() {
           </p>
 
           <SoundsliceEmbed sliceUrl="https://www.soundslice.com/slices/TBWbc/embed/" />
+          <p className="text-xs text-[var(--color-muted)] mt-3 text-center italic">
+            *Best viewed on tablet or computer
+          </p>
         </div>
       </section>
 

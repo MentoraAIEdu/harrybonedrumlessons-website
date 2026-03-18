@@ -16,15 +16,6 @@ export default function AboutPage() {
             About me
           </h1>
 
-          {/* Photo */}
-          <div className="rounded-2xl overflow-hidden border border-[var(--color-card-border)] mb-8">
-            <img
-              src="/harry-hero.jpg"
-              alt="Harry Bone — drum teacher in Bristol"
-              className="w-full h-64 sm:h-80 object-cover object-top"
-            />
-          </div>
-
           <div className="space-y-4 text-[var(--color-muted)] leading-relaxed text-lg">
             <p>
               I&apos;m Harry — a professional drum teacher based in Bristol with
@@ -124,14 +115,24 @@ export default function AboutPage() {
           </p>
           <div className="aspect-video rounded-xl overflow-hidden border border-[var(--color-card-border)]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.0!2d-2.5913!3d51.3882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48718e82a5db5c8d%3A0x2f87c9af2f7b5a3!2s2a+Gillebank+Close%2C+Bristol+BS14+8HT!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk"
-              title="Bristol location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.0!2d-2.5913!3d51.3882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48718d3c1a4b9c0f%3A0x7c1e8e5f0a2b3d4e!2sHarry+Bone+Drum+Lessons!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk"
+              title="Harry Bone Drum Lessons — Bristol"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full"
             />
           </div>
+          <p className="mt-3 text-sm text-center">
+            <a
+              href="https://share.google/G3t25yQiA3ZamtySP"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-green)] hover:underline"
+            >
+              View on Google Maps &rarr;
+            </a>
+          </p>
         </div>
       </section>
 

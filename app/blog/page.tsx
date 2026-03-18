@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
@@ -21,35 +23,11 @@ async function getBlogPosts(): Promise<NotionPost[]> {
   const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
 
   if (!notionKey || !databaseId) {
-    return [
-      {
-        id: "1",
-        title: "When Learning the Drums, How Do Cognitive Memory and Muscle Memory Differ?",
-        snippet:
-          "Understanding how different memory types function during drumming practice can transform your approach to learning.",
-        slug: "cognitive-vs-muscle-memory",
-        cover: null,
-        date: "2026-02-15",
-      },
-      {
-        id: "2",
-        title: "Why 'Something New Each Week' Kills Progress (And What Actually Works)",
-        snippet:
-          "The most common mistake in drum lessons — and the structured alternative that actually produces results.",
-        slug: "something-new-each-week",
-        cover: null,
-        date: "2026-01-20",
-      },
-      {
-        id: "3",
-        title: "How to Make a Living from Music (When There's No Blueprint)",
-        snippet:
-          "Honest reflections on building a sustainable music career as a drum teacher and performer.",
-        slug: "living-from-music",
-        cover: null,
-        date: "2025-12-10",
-      },
-    ];
+    console.error("Blog: Missing env vars", {
+      hasNotionKey: !!notionKey,
+      hasDatabaseId: !!databaseId,
+    });
+    return [];
   }
 
   const res = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
@@ -66,7 +44,10 @@ async function getBlogPosts(): Promise<NotionPost[]> {
     next: { revalidate: 3600 },
   });
 
-  if (!res.ok) return [];
+  if (!res.ok) {
+    console.error("Blog: Notion API error", res.status, await res.text().catch(() => ""));
+    return [];
+  }
 
   const data = await res.json();
 
