@@ -1,10 +1,14 @@
 "use client";
 
 export function SoundsliceEmbed({ sliceUrl }: { sliceUrl: string }) {
+  // Add URL params for better display: horizontal scroll + auto-shrink notation to fit
+  const separator = sliceUrl.includes("?") ? "&" : "?";
+  const enhancedUrl = `${sliceUrl}${separator}layout=2&hshrink=1&zoom=3`;
+
   return (
-    <div className="aspect-[3/5] sm:aspect-[4/3] lg:aspect-video rounded-xl overflow-hidden border border-[var(--color-card-border)]">
+    <div className="rounded-xl overflow-hidden border border-[var(--color-card-border)]" style={{ height: "clamp(400px, 60vw, 550px)" }}>
       <iframe
-        src={sliceUrl}
+        src={enhancedUrl}
         title="Soundslice interactive sheet music"
         allowFullScreen
         className="w-full h-full"
