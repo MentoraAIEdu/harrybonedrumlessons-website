@@ -16,11 +16,13 @@ export default function AboutPage() {
             About me
           </h1>
 
-          {/* Photo placeholder */}
-          <div className="bg-[var(--color-warm-bg)] border border-[var(--color-card-border)] rounded-2xl h-64 sm:h-80 flex items-center justify-center mb-8">
-            <p className="text-[var(--color-muted)] text-sm italic">
-              Photo of Harry — coming soon
-            </p>
+          {/* Photo */}
+          <div className="rounded-2xl overflow-hidden border border-[var(--color-card-border)] mb-8">
+            <img
+              src="/harry-hero.jpg"
+              alt="Harry Bone — drum teacher in Bristol"
+              className="w-full h-64 sm:h-80 object-cover object-top"
+            />
           </div>
 
           <div className="space-y-4 text-[var(--color-muted)] leading-relaxed text-lg">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -19,7 +20,14 @@ export function Navbar() {
     <nav className="fixed top-0 w-full z-50 bg-[var(--color-background)]/90 backdrop-blur-sm border-b border-[var(--color-card-border)]">
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-lg font-bold text-[var(--color-foreground)]">
+        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-[var(--color-foreground)]">
+          <Image
+            src="/favicon.png"
+            alt="Harry Bone Drums logo"
+            width={32}
+            height={32}
+            className="rounded-md"
+          />
           Harry Bone <span className="text-[var(--color-green)]">Drums</span>
         </Link>
 
