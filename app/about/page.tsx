@@ -115,7 +115,7 @@ export default function AboutPage() {
           </p>
           <div className="aspect-video rounded-xl overflow-hidden border border-[var(--color-card-border)]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.0!2d-2.5913!3d51.3882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48718d3c1a4b9c0f%3A0x7c1e8e5f0a2b3d4e!2sHarry+Bone+Drum+Lessons!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.5708726729117!2d-2.5507226230732565!3d51.41093917179158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48718f4ecfc4a8ab%3A0xadf6d66465bbff86!2sHarry%20Bone%20Drum%20Lessons!5e0!3m2!1sen!2suk!4v1765995859348!5m2!1sen!2suk"
               title="Harry Bone Drum Lessons — Bristol"
               allowFullScreen
               loading="lazy"
