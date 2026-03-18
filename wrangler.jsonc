@@ -21,5 +21,15 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "harrybonedrumlessons.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.harrybonedrumlessons.com",
+      "custom_domain": true
+    }
+  ]
 }
