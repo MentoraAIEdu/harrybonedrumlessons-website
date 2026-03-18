@@ -42,14 +42,12 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <a
-            href="https://www.harrybonedrumlessons.com/studentportallogin"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/studentportallogin"
             className="text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
           >
             Student Portal
-          </a>
+          </Link>
           <a
             href="https://wa.me/447984263112"
             target="_blank"
