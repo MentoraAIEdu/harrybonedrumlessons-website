@@ -4,8 +4,80 @@ import { TypeformEmbed } from "./components/TypeformEmbed";
 import { SoundsliceEmbed } from "./components/SoundsliceEmbed";
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Harry Bone Drum Lessons",
+    description:
+      "Professional drum lessons in Bristol with Harry Bone. BMus (Hons) from RWCMD, 6+ years teaching experience. In-person at home studio or mobile lessons.",
+    url: "https://harrybonedrumlessons.com",
+    telephone: "+447984263112",
+    email: "harrybonedrumlessons@gmail.com",
+    image: "https://harrybonedrumlessons.com/harry-hero.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "2a Gillebank Close",
+      addressLocality: "Bristol",
+      postalCode: "BS14 8HT",
+      addressCountry: "GB",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 51.41094,
+      longitude: -2.55072,
+    },
+    priceRange: "£10–£40",
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "20:00",
+    },
+    sameAs: [
+      "https://wa.me/447984263112",
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Drum Lesson Packages",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          name: "Trial Lesson",
+          price: "10",
+          priceCurrency: "GBP",
+          description: "30-minute trial drum lesson",
+        },
+        {
+          "@type": "Offer",
+          name: "Standard Lesson",
+          price: "20",
+          priceCurrency: "GBP",
+          description: "30-minute drum lesson",
+        },
+        {
+          "@type": "Offer",
+          name: "Extended Lesson",
+          price: "30",
+          priceCurrency: "GBP",
+          description: "45-minute drum lesson",
+        },
+        {
+          "@type": "Offer",
+          name: "Full Lesson",
+          price: "40",
+          priceCurrency: "GBP",
+          description: "1-hour drum lesson",
+        },
+      ],
+    },
+  };
+
   return (
     <main className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ─── Hero ────────────────────────────────────────── */}
       <section className="hero-gradient pt-28 pb-16 px-6">
         <div className="max-w-3xl mx-auto">

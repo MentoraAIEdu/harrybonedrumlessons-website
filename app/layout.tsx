@@ -16,24 +16,41 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://harrybonedrumlessons.com"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
   title: {
-    default: "Harry Bone Drum Lessons | Bristol",
+    default: "Harry Bone Drum Lessons | Professional Drum Teacher in Bristol",
     template: "%s | Harry Bone Drum Lessons",
   },
   description:
-    "Professional drum lessons in Bristol with Harry Bone. BMus (Hons) from RWCMD, 6+ years teaching, DBS checked. In-person or online. Book a trial lesson for just £10.",
+    "Professional drum lessons in Bristol with Harry Bone. BMus (Hons) from RWCMD, 20+ years playing, 6+ years teaching. In-person at home studio or mobile. DBS checked. All ages. Trial lesson £10.",
   keywords: [
     "drum lessons Bristol",
     "drum teacher Bristol",
-    "learn drums",
+    "learn drums Bristol",
+    "private drum lessons Bristol",
+    "drum tutor near me",
     "Harry Bone",
-    "Rockschool",
-    "private drum lessons",
+    "Harry Bone drums",
+    "Rockschool drum lessons",
+    "drum lessons for kids Bristol",
+    "adult drum lessons Bristol",
+    "online drum lessons UK",
+    "beginner drum lessons",
+    "mobile drum teacher Bristol",
   ],
+  authors: [{ name: "Harry Bone" }],
+  creator: "Harry Bone",
+  other: {
+    "theme-color": "#04C57A",
+    "google-site-verification": "",
+  },
   openGraph: {
     title: "Harry Bone Drum Lessons | Bristol",
     description:
