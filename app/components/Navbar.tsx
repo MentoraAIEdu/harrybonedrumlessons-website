@@ -32,7 +32,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -63,7 +63,7 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="lg:hidden flex flex-col gap-1.5 p-2"
           aria-label="Toggle menu"
         >
           <span className={`block w-6 h-0.5 bg-[var(--color-foreground)] transition-transform duration-200 ${open ? "rotate-45 translate-y-2" : ""}`} />
@@ -74,7 +74,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[var(--color-background)] border-t border-[var(--color-card-border)] px-6 py-4 space-y-3">
+        <div className="lg:hidden bg-[var(--color-background)] border-t border-[var(--color-card-border)] px-6 py-4 space-y-3">
           {navLinks.map((link) => (
             <Link
               key={link.href}

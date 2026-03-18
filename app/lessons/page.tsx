@@ -201,7 +201,7 @@ export default function LessonsPage() {
           <p className="text-[var(--color-muted)] mb-8 text-center">
             Fill in the form and I&apos;ll get back to you within 24 hours.
           </p>
-          <TypeformEmbed formId="01K4CGSQ9CF6DD3G70W3ZKCN6D" />
+          <TypeformEmbed formId="MV64VUh7" />
         </div>
       </section>
     </main>
