@@ -258,7 +258,7 @@ export default function Home() {
             Simple pricing
           </h2>
           <p className="text-[var(--color-muted)] mb-8 leading-relaxed">
-            No sign-up fees, no contracts. Pay per lesson or set up auto-pay if
+            No sign-up fees, no contracts. Pay monthly or set up auto-pay if
             you prefer.
           </p>
 

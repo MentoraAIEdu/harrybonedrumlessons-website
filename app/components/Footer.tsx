@@ -20,6 +20,7 @@ export function Footer() {
             <p className="text-sm font-semibold text-[var(--color-foreground)] mb-3">Pages</p>
             <div className="space-y-2">
               {[
+                { href: "/", label: "Home" },
                 { href: "/about", label: "About" },
                 { href: "/lessons", label: "Lessons & Pricing" },
                 { href: "/blog", label: "Blog" },
