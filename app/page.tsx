@@ -301,12 +301,21 @@ export default function Home() {
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-6 sm:p-8">
-            <p className="text-xs font-semibold text-[var(--color-green)] uppercase tracking-wider mb-3">
-              Something I built
-            </p>
-            <h2 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--color-foreground)]">
-              PracticAI — your AI drum coach between lessons
-            </h2>
+            <div className="flex items-start gap-4 mb-4">
+              <img
+                src="/practicai-icon.png"
+                alt="PracticAI app icon"
+                className="w-16 h-16 rounded-2xl shadow-md flex-shrink-0"
+              />
+              <div>
+                <p className="text-xs font-semibold text-[var(--color-green)] uppercase tracking-wider mb-1">
+                  Something I built
+                </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--color-foreground)]">
+                  PracticAI — your AI drum coach between lessons
+                </h2>
+              </div>
+            </div>
             <p className="text-[var(--color-muted)] leading-relaxed mb-5">
               I built an app that gives you a personalised practice routine every
               day, based on what you actually played. It remembers your sessions,
