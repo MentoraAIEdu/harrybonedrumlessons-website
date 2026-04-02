@@ -220,11 +220,75 @@ async function getPostBySlug(slug: string) {
     }
   }
 
+  // Extract snippet from Notion or first paragraph of content
+  const snippetProp = props.Snippet || props.Description;
+  const snippetArr = snippetProp?.rich_text as Array<{ plain_text: string }> | undefined;
+  let snippet = snippetArr?.[0]?.plain_text || "";
+
+  // Fallback: extract first paragraph text from content
+  if (!snippet && tdBlocks.length > 0) {
+    const findFirstText = (blocks: (TDBlock | TDTextNode)[]): string => {
+      for (const b of blocks) {
+        if (isTextNode(b) && b.text.trim()) return b.text.trim();
+        if (!isTextNode(b) && b.children) {
+          const found = findFirstText(b.children);
+          if (found) return found;
+        }
+      }
+      return "";
+    };
+    snippet = findFirstText(tdBlocks).slice(0, 160);
+  }
+
+  // Get cover image
+  const coverProp = props.Cover?.files as Array<{ file?: { url: string }; external?: { url: string } }> | undefined;
+  const pageCover = page.cover as { file?: { url: string }; external?: { url: string } } | null;
+  const coverUrl = coverProp?.[0]?.file?.url || coverProp?.[0]?.external?.url || pageCover?.file?.url || pageCover?.external?.url || null;
+
+  // Get slug for canonical URL
+  const slugProp = props["TD:slug"] || props.Slug;
+  const slugArr = slugProp?.rich_text as Array<{ plain_text: string }> | undefined;
+  const postSlug = slugArr?.[0]?.plain_text || (page.id as string);
+
   return {
     title: titleArr?.[0]?.plain_text || "Untitled",
     date: dateProp?.start || "",
+    snippet,
+    coverUrl,
+    slug: postSlug,
     blocks: tdBlocks,
   };
+}
+
+/* ── Static params for pre-rendering ─────────────────── */
+export async function generateStaticParams() {
+  const notionKey = process.env.NOTION_API_KEY;
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID;
+  if (!notionKey || !databaseId) return [];
+
+  try {
+    const res = await fetch(
+      `https://api.notion.com/v1/databases/${databaseId}/query`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${notionKey}`,
+          "Notion-Version": "2022-06-28",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ page_size: 100 }),
+      }
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.results || []).map((page: Record<string, unknown>) => {
+      const props = (page as { properties: Record<string, Record<string, unknown>> }).properties;
+      const slugArr = props["TD:slug"]?.rich_text as Array<{ plain_text: string }> | undefined;
+      return { slug: slugArr?.[0]?.plain_text || (page as { id: string }).id };
+    });
+  } catch {
+    return [];
+  }
 }
 
 /* ── Metadata ─────────────────────────────────────────── */
@@ -235,8 +299,29 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  if (!post) return { title: "Blog Post" };
+
+  const description = post.snippet || `${post.title} — drum learning insights from Harry Bone.`;
+  const ogImage = post.coverUrl || "https://harrybonedrumlessons.com/harry-hero.jpg";
+
   return {
-    title: post?.title || "Blog Post",
+    title: post.title,
+    description,
+    openGraph: {
+      title: post.title,
+      description,
+      url: `https://harrybonedrumlessons.com/blog/${post.slug}`,
+      type: "article",
+      publishedTime: post.date || undefined,
+      authors: ["Harry Bone"],
+      images: [{ url: ogImage, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
