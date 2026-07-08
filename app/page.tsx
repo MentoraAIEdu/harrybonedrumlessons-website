@@ -190,9 +190,9 @@ export default function Home() {
 
           {/* Featured cover — Vimeo embed, directly above the YouTube playlist. */}
           <div className="rounded-xl overflow-hidden border border-[var(--color-card-border)] mb-8">
-            <div style={{ padding: '75% 0 0 0', position: 'relative' }}>
+            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
               <iframe
-                src="https://player.vimeo.com/video/1208049711?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1"
+                src="https://player.vimeo.com/video/1208131131?badge=0&autopause=0&player_id=0&app_id=58479"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
