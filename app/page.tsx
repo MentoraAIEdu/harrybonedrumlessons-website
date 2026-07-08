@@ -188,6 +188,20 @@ export default function Home() {
             This is the kind of progress you can expect with focused work.
           </p>
 
+          {/* Featured cover — Vimeo embed, directly above the YouTube playlist. */}
+          <div className="rounded-xl overflow-hidden border border-[var(--color-card-border)] mb-8">
+            <div style={{ padding: '75% 0 0 0', position: 'relative' }}>
+              <iframe
+                src="https://player.vimeo.com/video/1208049711?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                title="Laid to Rest - Lamb of God | HarryDrums Cover"
+              />
+            </div>
+          </div>
+
           <div className="aspect-video rounded-xl overflow-hidden border border-[var(--color-card-border)]">
             <iframe
               src="https://www.youtube.com/embed/videoseries?list=PLnW7DBoH5op8JxS3NwyhbSF51bxWpDvY5"
