@@ -7,10 +7,10 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
           <div>
             <p className="text-lg font-bold text-[var(--color-foreground)] mb-2">
-              Harry Bone <span className="text-[var(--color-green)]">Drums</span>
+              Harry Bone <span className="text-[var(--color-muted)] font-medium">Drums</span>
             </p>
             <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-              Professional drum lessons in Bristol.
+              Professional drum lessons in Brislington, Bristol.
               <br />
               BMus (Hons) RWCMD. Enhanced DBS checked.
             </p>
@@ -20,10 +20,8 @@ export function Footer() {
             <p className="text-sm font-semibold text-[var(--color-foreground)] mb-3">Pages</p>
             <div className="space-y-2">
               {[
-                { href: "/", label: "Home" },
                 { href: "/about", label: "About" },
                 { href: "/lessons", label: "Lessons & Pricing" },
-                { href: "/blog", label: "Blog" },
                 { href: "/reviews", label: "Reviews" },
                 { href: "/contact", label: "Contact" },
               ].map((link) => (
@@ -66,12 +64,12 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4 text-xs text-[var(--color-muted)]">
             <a
-              href="https://mentoraai.io"
+              href="https://mentoraai.io/open?source=drum_educator"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[var(--color-foreground)] transition-colors"
             >
-              PracticAI
+              Partner app
             </a>
             <a
               href="https://www.harrybonedrumlessons.com/studentportallogin"

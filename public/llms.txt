@@ -22,4 +22,4 @@
 
 ## Related
 
-- [PracticAI](https://mentoraai.io): Harry's AI drum-practice app — an AI coach (Riley) that remembers every session and builds your next practice around it. On the iOS App Store: https://apps.apple.com/app/practicai/id6753584431
+- [Partner](https://mentoraai.io/open?source=drum_educator): Harry's practice app for students aged 13 and over. It remembers each practice session and plans the next one around it. On the iOS App Store: https://apps.apple.com/app/id6753584431

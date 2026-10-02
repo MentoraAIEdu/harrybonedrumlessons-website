@@ -1,7 +1,5 @@
-import Image from "next/image";
-import { SenjaEmbed } from "./components/SenjaEmbed";
-import { TypeformEmbed } from "./components/TypeformEmbed";
-import { SoundsliceEmbed } from "./components/SoundsliceEmbed";
+import { PhotoSlot } from "./components/PhotoSlot";
+import { VideoFacade } from "./components/VideoFacade";
 
 export default function Home() {
   const jsonLd = {
@@ -9,7 +7,7 @@ export default function Home() {
     "@type": "LocalBusiness",
     name: "Harry Bone Drum Lessons",
     description:
-      "Professional drum lessons in Bristol with Harry Bone. BMus (Hons) from RWCMD, 6+ years teaching experience. In-person at home studio or mobile lessons.",
+      "Professional drum lessons in Brislington, Bristol with Harry Bone. BMus (Hons) from RWCMD, 6+ years teaching experience. In-person at home studio or mobile lessons.",
     url: "https://harrybonedrumlessons.com",
     telephone: "+447984263112",
     email: "harrybonedrumlessons@gmail.com",
@@ -68,338 +66,203 @@ export default function Home() {
     },
   };
 
+  // Three reviews, copied word for word from Senja. Never rewrite or tidy a
+  // quote. Labels ("student"/"parent") are taken from each quote's own words.
+  const reviews = [
+    {
+      quote:
+        "Brilliant teacher, tailored lessons to my musical interests overall and on a week-to-week basis. Always able to help me get unstuck. Great drum kit and teaching resources. Harry has taken me from complete beginner to playing through my favourite songs.",
+      name: "Max",
+      who: "student",
+    },
+    {
+      quote:
+        "Harry is an excellent and encouraging teacher. Our son has progressed massively and is really enjoying the breadth of content to learn. Always timely, polite, clearly very knowledgeable and communicates really clearly. Would recommend Harry to anyone!",
+      name: "Richard",
+      who: "parent",
+    },
+    {
+      quote:
+        "Harry Bone is an experienced, meticulous, and encouraging drum instructor. I am very grateful for his encouragement and guidance, which has greatly improved my son's skills. He also helped him take the exam and obtain certification.",
+      name: "Vicky",
+      who: "parent",
+    },
+  ];
+
+  const prices = [
+    { label: "Trial", length: "30 min", price: "£10" },
+    { label: "Standard", length: "30 min", price: "£20" },
+    { label: "Extended", length: "45 min", price: "£30" },
+    { label: "Full", length: "1 hour", price: "£40" },
+    { label: "Parent and child, shared", length: "1 hour", price: "£35" },
+  ];
+
   return (
     <main className="min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* ─── Hero ────────────────────────────────────────── */}
-      <section className="hero-gradient pt-28 pb-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-sm text-[var(--color-green)] font-medium mb-4">
-            Drum lessons in Bristol
-          </p>
 
-          <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-6 text-[var(--color-foreground)]">
+      {/* 1. Who are you? */}
+      <section className="hero-gradient pt-32 pb-20 px-6">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-sm uppercase tracking-widest text-[var(--color-muted)] mb-5">
+            Drum lessons in Brislington, Bristol
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-10 text-[var(--color-foreground)]">
             Hey, I&apos;m Harry.
             <br />
             I teach drums.
           </h1>
-
-          <p className="text-lg text-[var(--color-muted)] max-w-xl mb-4 leading-relaxed">
-            I&apos;m a professional drum teacher based in Bristol with a BMus from
-            the Royal Welsh College of Music &amp; Drama, 20+ years behind the kit,
-            and over 6 years of teaching experience.
-          </p>
-
-          <p className="text-lg text-[var(--color-muted)] max-w-xl mb-8 leading-relaxed">
-            I teach from my home studio or come to yours — whichever works best.
-            Lessons are structured around what <em>you</em> want to play, with
-            clear progress every step of the way.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 mb-12">
-            <a
-              href="/contact"
-              className="bg-[var(--color-green)] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[var(--color-green-light)] transition-colors text-center"
-            >
-              Book a Trial Lesson — &pound;10
+          <div className="flex flex-col sm:flex-row gap-3 mb-14">
+            <a href="/contact" className={primaryButton}>
+              Book a &pound;10 trial
             </a>
             <a
               href="https://wa.me/447984263112"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[var(--color-card-border)] text-[var(--color-foreground)] px-6 py-3 rounded-lg font-medium hover:border-[var(--color-green)] transition-colors text-center"
+              className={secondaryButton}
             >
               Message me on WhatsApp
             </a>
           </div>
-
-          {/* Hero photo */}
-          <div className="rounded-2xl overflow-hidden border border-[var(--color-card-border)]">
-            <Image
-              src="/harry-hero.jpg"
-              alt="Harry Bone at the electronic drum kit in his home studio"
-              width={800}
-              height={500}
-              className="w-full h-auto object-cover"
-              priority
-            />
-          </div>
+          <PhotoSlot
+            src="harry-hero.jpg"
+            alt="Harry Bone at the electronic drum kit in his home studio"
+            priority
+          />
         </div>
       </section>
 
-      {/* ─── What to expect ──────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            What to expect
-          </h2>
-
-          <div className="space-y-4 text-[var(--color-muted)] leading-relaxed">
-            <p>
-              Every student is different, so every lesson is different. Whether
-              you&apos;re 7 or 70, a complete beginner or prepping for a Rockschool
-              exam, I tailor each session to where you are and where you want to go.
-            </p>
-            <p>
-              Most of my students learn songs they love while building technique
-              alongside. I use electronic drums (no noise complaints), digital
-              resources, and a structured approach — but it never feels like school.
-              It should feel like fun, because that&apos;s when you learn best.
-            </p>
-          </div>
-
-          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+      {/* 2. What are lessons like? */}
+      <section className={sectionClass}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className={headingClass}>What lessons are like</h2>
+          <dl className="space-y-7 mb-10">
             {[
-              { label: "Song-based learning", desc: "Learn the tracks you actually want to play" },
-              { label: "Structured progression", desc: "Clear goals, visible progress, real results" },
-              { label: "Grade prep available", desc: "Rockschool exams — if that's your thing" },
-              { label: "All ages, all levels", desc: "From age 7 upwards, beginners to advanced" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5"
-              >
-                <p className="font-semibold text-[var(--color-foreground)] text-sm mb-1">
-                  {item.label}
-                </p>
-                <p className="text-sm text-[var(--color-muted)]">{item.desc}</p>
+              { term: "Songs you love", desc: "Learn the tracks you actually want to play." },
+              { term: "A clear plan", desc: "Clear goals, visible progress, real results." },
+              { term: "All ages from 7", desc: "From age 7 upwards, beginners to advanced." },
+            ].map((line) => (
+              <div key={line.term}>
+                <dt className="text-lg font-semibold text-[var(--color-foreground)]">{line.term}</dt>
+                <dd className="text-lg text-[var(--color-muted)] leading-relaxed">{line.desc}</dd>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── YouTube ─────────────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            See what structured practice looks like
-          </h2>
-          <p className="text-[var(--color-muted)] mb-8 leading-relaxed">
-            Here&apos;s my playing across different levels — beginner-friendly
-            Grade 3 through to advanced Grade 8, plus my double-kick progression.
-            This is the kind of progress you can expect with focused work.
+          </dl>
+          <p className="text-lg text-[var(--color-muted)] leading-relaxed mb-10">
+            I teach from my home studio or come to yours, whichever works best.
           </p>
-
-          {/* Featured cover — Vimeo embed, directly above the YouTube playlist. */}
-          <div className="rounded-xl overflow-hidden border border-[var(--color-card-border)] mb-8">
-            <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-              <iframe
-                src="https://player.vimeo.com/video/1208131131?badge=0&autopause=0&player_id=0&app_id=58479"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                title="Laid to Rest - Lamb of God | HarryDrums Cover"
-              />
-            </div>
-          </div>
-
-          <div className="aspect-video rounded-xl overflow-hidden border border-[var(--color-card-border)]">
-            <iframe
-              src="https://www.youtube.com/embed/videoseries?list=PLnW7DBoH5op8JxS3NwyhbSF51bxWpDvY5"
-              title="Harry Bone Drums — Practice Showcase"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Soundslice Interactive ──────────────────────── */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Interactive learning with Soundslice
-          </h2>
-          <p className="text-[var(--color-muted)] mb-4 leading-relaxed">
-            I use Soundslice for interactive sheet music — both in lessons and for
-            practice between sessions. You can slow down, loop sections, and play
-            along with backing tracks. Here&apos;s a free example to try:
-          </p>
-          <p className="text-sm text-[var(--color-muted)] mb-8">
-            Hit play below and follow along with the notation. You can adjust the
-            tempo using the controls.
-          </p>
-
-          <SoundsliceEmbed sliceUrl="https://www.soundslice.com/slices/TBWbc/embed/" />
-          <p className="text-xs text-[var(--color-muted)] mt-3 text-center italic">
-            *Best viewed on tablet or computer
-          </p>
-        </div>
-      </section>
-
-      {/* ─── Teaching Resources ──────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Professional teaching resources
-          </h2>
-          <p className="text-[var(--color-muted)] mb-6 leading-relaxed">
-            Every student gets access to an exclusive online library. You&apos;ll
-            receive a personal access code when lessons begin.
-          </p>
-          <ul className="space-y-3">
-            {[
-              "100+ songs organised from beginner to advanced",
-              "Step-by-step technique courses",
-              "Personalised homework assignments",
-              "Professional backing tracks to play along with",
-              "Interactive Soundslice exercises for practice between lessons",
-              "Available 24/7 from any device",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[var(--color-muted)]">
-                <span className="text-[var(--color-green)] mt-0.5 flex-shrink-0">&#10003;</span>
-                <span className="text-sm">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ─── Pricing preview ─────────────────────────────── */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Simple pricing
-          </h2>
-          <p className="text-[var(--color-muted)] mb-8 leading-relaxed">
-            No sign-up fees, no contracts. Pay monthly or set up auto-pay if
-            you prefer.
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[
-              { label: "Trial", price: "£10", duration: "30 min", highlight: true },
-              { label: "Standard", price: "£20", duration: "30 min", highlight: false },
-              { label: "Extended", price: "£30", duration: "45 min", highlight: false },
-              { label: "Full", price: "£40", duration: "1 hour", highlight: false },
-            ].map((tier) => (
-              <div
-                key={tier.label}
-                className={`rounded-xl p-5 text-center ${
-                  tier.highlight
-                    ? "bg-[var(--color-green)] text-white"
-                    : "bg-[var(--color-card)] border border-[var(--color-card-border)]"
-                }`}
-              >
-                <p className={`text-xs mb-1 ${tier.highlight ? "text-white/80" : "text-[var(--color-muted)]"}`}>
-                  {tier.label}
-                </p>
-                <p className="text-2xl font-bold">{tier.price}</p>
-                <p className={`text-xs mt-1 ${tier.highlight ? "text-white/80" : "text-[var(--color-muted)]"}`}>
-                  {tier.duration}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-sm text-[var(--color-muted)] text-center">
-            Family discount: parent &amp; child shared lesson — &pound;35/hour (save &pound;5).{" "}
-            <a href="/lessons" className="text-[var(--color-green)] hover:underline">
-              See full details &rarr;
+          <PhotoSlot src="photos/teaching.jpg" alt="Harry teaching a drum lesson" />
+          <p className="mt-10">
+            <a href="/lessons" className={textLink}>
+              More about lessons
             </a>
           </p>
         </div>
       </section>
 
-      {/* ─── PracticAI ───────────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-6 sm:p-8">
-            <div className="flex items-start gap-4 mb-4">
-              <img
-                src="/practicai-icon.png"
-                alt="PracticAI app icon"
-                className="w-16 h-16 rounded-2xl shadow-md flex-shrink-0"
-              />
-              <div>
-                <p className="text-xs font-semibold text-[var(--color-green)] uppercase tracking-wider mb-1">
-                  Something I built
-                </p>
-                <h2 className="text-xl sm:text-2xl font-bold text-[var(--color-foreground)]">
-                  PracticAI — your AI drum coach between lessons
-                </h2>
-              </div>
-            </div>
-            <p className="text-[var(--color-muted)] leading-relaxed mb-5">
-              I built an app that gives you a personalised practice routine every
-              day, based on what you actually played. It remembers your sessions,
-              tracks your progress, and gives smart coaching notes — like having a
-              teacher between lessons.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="https://mentoraai.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-[var(--color-green)] font-medium hover:underline"
-              >
-                Learn more about PracticAI &rarr;
-              </a>
-              <a
-                href="https://apps.apple.com/app/practicai/id6753584431"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
-              >
-                Download on the App Store
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Reviews ─────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-[var(--color-foreground)] text-center">
-            What students &amp; parents say
-          </h2>
-          <SenjaEmbed widgetId="4366888f-0471-4ab2-b948-188f2988a964" />
-          <div className="text-center mt-8">
-            <a
-              href="/reviews"
-              className="text-sm text-[var(--color-green)] font-medium hover:underline"
-            >
-              Read all reviews &rarr;
+      {/* 3. Is he any good? */}
+      <section className={sectionClass}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className={headingClass}>My playing</h2>
+          <VideoFacade
+            embedUrl="https://player.vimeo.com/video/1208131131?badge=0&autopause=0&player_id=0&app_id=58479"
+            title="Laid to Rest - Lamb of God | HarryDrums Cover"
+            label="Laid to Rest, Lamb of God. My drum cover."
+          />
+          <p className="mt-8 text-lg text-[var(--color-foreground)] leading-relaxed">
+            BMus RWCMD &middot; 20+ years playing &middot; teaching since 2018 &middot; enhanced DBS
+          </p>
+          <p className="mt-10">
+            <a href="/about" className={textLink}>
+              More about me
             </a>
-          </div>
+          </p>
         </div>
       </section>
 
-      {/* ─── Contact CTA ─────────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Fancy giving it a go?
-          </h2>
-          <p className="text-[var(--color-muted)] mb-8 leading-relaxed max-w-lg mx-auto">
-            Book a trial lesson for &pound;10 — 30 minutes, no commitment. If my
+      {/* 4. What do others say? Written into the page so search engines can read it. */}
+      <section className={sectionClass}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className={headingClass}>What students and parents say</h2>
+          <div className="space-y-12">
+            {reviews.map((r) => (
+              <figure key={r.name}>
+                <blockquote className="text-lg text-[var(--color-foreground)] leading-relaxed">
+                  &ldquo;{r.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-3 text-sm text-[var(--color-muted)]">
+                  {r.name}, {r.who}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="mt-12">
+            <a href="/reviews" className={textLink}>
+              Read all reviews
+            </a>
+          </p>
+        </div>
+      </section>
+
+      {/* 5. How much? */}
+      <section className={sectionClass}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className={headingClass}>Prices</h2>
+          <dl className="divide-y divide-[var(--color-card-border)] border-y border-[var(--color-card-border)]">
+            {prices.map((p) => (
+              <div key={p.label} className="flex items-baseline justify-between gap-4 py-5">
+                <dt className="text-lg text-[var(--color-foreground)]">
+                  {p.label}
+                  <span className="block text-sm text-[var(--color-muted)]">{p.length}</span>
+                </dt>
+                <dd className="text-2xl font-bold text-[var(--color-foreground)]">{p.price}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-8 text-lg text-[var(--color-muted)]">No sign-up fees, no contracts.</p>
+        </div>
+      </section>
+
+      {/* 6. How do I start? */}
+      <section className={`${sectionClass} pb-28`}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className={headingClass}>Fancy giving it a go?</h2>
+          <p className="text-lg text-[var(--color-muted)] leading-relaxed mb-10">
+            Book a trial lesson for &pound;10. 30 minutes, no commitment. If my
             teaching style clicks, we&apos;ll take it from there.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="/contact"
-              className="bg-[var(--color-green)] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[var(--color-green-light)] transition-colors"
-            >
-              Get in Touch
+          <div className="flex flex-col sm:flex-row gap-3 mb-10">
+            <a href="/contact" className={primaryButton}>
+              Book a &pound;10 trial
             </a>
             <a
               href="https://wa.me/447984263112"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[var(--color-green)] font-medium hover:underline transition-colors"
+              className={secondaryButton}
             >
-              or WhatsApp me directly &rarr;
+              Message me on WhatsApp
             </a>
           </div>
+          <p className="text-lg text-[var(--color-foreground)]">
+            Based in Brislington. I&apos;ll send directions when we book.
+          </p>
         </div>
       </section>
     </main>
   );
 }
+
+// Green is for the primary button only. Everything else is ink and space.
+const primaryButton =
+  "block sm:inline-block text-center bg-[var(--color-green)] text-white px-7 py-4 rounded-lg text-lg font-semibold hover:bg-[var(--color-green-dark)] transition-colors";
+const secondaryButton =
+  "block sm:inline-block text-center border border-[var(--color-card-border)] text-[var(--color-foreground)] px-7 py-4 rounded-lg text-lg font-medium hover:border-[var(--color-foreground)] transition-colors";
+const textLink =
+  "text-lg text-[var(--color-foreground)] underline underline-offset-4 decoration-[var(--color-card-border)] hover:decoration-[var(--color-foreground)]";
+const sectionClass = "px-6 py-20 sm:py-24 border-t border-[var(--color-card-border)]";
+const headingClass = "text-3xl font-bold mb-10 text-[var(--color-foreground)]";

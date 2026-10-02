@@ -23,8 +23,7 @@ export default function ReviewsPage() {
             Student Reviews
           </h1>
           <p className="text-lg text-[var(--color-muted)] leading-relaxed">
-            Don&apos;t just take my word for it — here&apos;s what my students
-            and their parents have to say.
+            Here&apos;s what my students and their parents have to say.
           </p>
         </div>
       </section>

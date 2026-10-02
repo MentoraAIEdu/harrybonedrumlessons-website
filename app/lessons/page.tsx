@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { TypeformEmbed } from "../components/TypeformEmbed";
+import { SoundsliceEmbed } from "../components/SoundsliceEmbed";
+import { PhotoSlot } from "../components/PhotoSlot";
 
 export const metadata: Metadata = {
   title: "Lessons & Pricing",
   description:
-    "Drum lessons in Bristol — studio or mobile. From £20/session. Trial lesson £10. Rockschool prep, song-based learning, all ages welcome.",
+    "Drum lessons in Brislington, Bristol: studio or mobile. From £20/session. Trial lesson £10. Rockschool prep, song-based learning, all ages welcome.",
   openGraph: {
     title: "Drum Lessons & Pricing | Harry Bone, Bristol",
     description:
@@ -31,6 +33,28 @@ export default function LessonsPage() {
         </div>
       </section>
 
+      {/* ─── What to expect (moved from the homepage) ────── */}
+      <section className="py-16 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
+            What to expect
+          </h2>
+          <div className="space-y-4 text-[var(--color-muted)] leading-relaxed">
+            <p>
+              Every student is different, so every lesson is different. Whether
+              you&apos;re 7 or 70, a complete beginner or prepping for a Rockschool
+              exam, I tailor each session to where you are and where you want to go.
+            </p>
+            <p>
+              Most of my students learn songs they love while building technique
+              alongside. I use electronic drums (no noise complaints), digital
+              resources, and a structured approach, but it never feels like school.
+              It should feel like fun, because that&apos;s when you learn best.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ─── What we cover ───────────────────────────────── */}
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto">
@@ -49,7 +73,7 @@ export default function LessonsPage() {
               },
               {
                 title: "Technical foundation",
-                desc: "Coordination, timing, stick control, independence — the building blocks that make everything else possible.",
+                desc: "Coordination, timing, stick control, independence: the building blocks that make everything else possible.",
               },
               {
                 title: "Custom exercises",
@@ -57,7 +81,7 @@ export default function LessonsPage() {
               },
               {
                 title: "Musical understanding",
-                desc: "Reading notation, basic theory, understanding how drums fit into music. Not dry — always connected to real playing.",
+                desc: "Reading notation, basic theory, understanding how drums fit into music. Not dry. Always connected to real playing.",
               },
               {
                 title: "Performance skills",
@@ -84,12 +108,65 @@ export default function LessonsPage() {
         </div>
       </section>
 
+      {/* ─── Interactive sheet music (moved from the homepage) ─ */}
+      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
+            Interactive learning with Soundslice
+          </h2>
+          <p className="text-[var(--color-muted)] mb-4 leading-relaxed">
+            I use Soundslice for interactive sheet music, both in lessons and for
+            practice between sessions. You can slow down, loop sections, and play
+            along with backing tracks. Here&apos;s a free example to try:
+          </p>
+          <p className="text-sm text-[var(--color-muted)] mb-8">
+            Hit play below and follow along with the notation. You can adjust the
+            tempo using the controls.
+          </p>
+          <SoundsliceEmbed sliceUrl="https://www.soundslice.com/slices/TBWbc/embed/" />
+          <p className="text-xs text-[var(--color-muted)] mt-3 text-center italic">
+            *Best viewed on tablet or computer
+          </p>
+        </div>
+      </section>
+
+      {/* ─── Teaching resources (moved from the homepage) ─── */}
+      <section className="py-16 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
+            Professional teaching resources
+          </h2>
+          <p className="text-[var(--color-muted)] mb-6 leading-relaxed">
+            Every student gets access to an exclusive online library. You&apos;ll
+            receive a personal access code when lessons begin.
+          </p>
+          <ul className="space-y-3">
+            {[
+              "100+ songs organised from beginner to advanced",
+              "Step-by-step technique courses",
+              "Personalised homework assignments",
+              "Professional backing tracks to play along with",
+              "Interactive Soundslice exercises for practice between lessons",
+              "Available 24/7 from any device",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 text-[var(--color-muted)]">
+                <span className="text-[var(--color-green)] mt-0.5 flex-shrink-0">&#10003;</span>
+                <span className="text-sm">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ─── Studio vs Mobile ────────────────────────────── */}
       <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            Studio or your home — your choice
+            Studio or your home: your choice
           </h2>
+          <div className="mb-6">
+            <PhotoSlot src="photos/studio.jpg" alt="Harry's home studio with the electronic drum kit" />
+          </div>
 
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-6">
@@ -144,7 +221,7 @@ export default function LessonsPage() {
 
           <div className="space-y-4 text-[var(--color-muted)] leading-relaxed">
             <p>
-              Lessons run on a rolling basis — typically 4 per month, but you can
+              Lessons run on a rolling basis, typically 4 per month, but you can
               adjust the schedule to suit you. Everything is managed through the
               Student Portal where you (or your parents) can book, cancel, and
               reschedule easily.
@@ -193,7 +270,7 @@ export default function LessonsPage() {
           <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5 text-center">
             <p className="text-sm text-[var(--color-muted)]">
               <span className="font-semibold text-[var(--color-foreground)]">Family discount:</span>{" "}
-              Parent &amp; child shared lesson — &pound;35/hour (save &pound;5)
+              Parent &amp; child shared lesson: &pound;35/hour (save &pound;5)
             </p>
           </div>
         </div>

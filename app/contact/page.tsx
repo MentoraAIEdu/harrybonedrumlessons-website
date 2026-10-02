@@ -24,7 +24,7 @@ export default function ContactPage() {
           </h1>
           <p className="text-lg text-[var(--color-muted)] leading-relaxed">
             Drop me a message below and I&apos;ll get back to you within 24 hours.
-            Or WhatsApp me for a quicker response — I usually reply within the hour.
+            Or WhatsApp me for a quicker response. I usually reply within the hour.
           </p>
         </div>
       </section>

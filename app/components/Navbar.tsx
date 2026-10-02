@@ -4,14 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+// Kept short on purpose. The blog stays live at /blog (its posts are indexed),
+// it just isn't in the navigation. Student Portal lives in the footer.
 const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/lessons", label: "Lessons & Pricing" },
-  { href: "/blog", label: "Blog" },
   { href: "/reviews", label: "Reviews" },
-  { href: "/contact", label: "Contact" },
 ];
+
+const bookButton =
+  "text-sm bg-[var(--color-green)] text-white px-5 py-2.5 rounded-lg hover:bg-[var(--color-green-dark)] transition-colors font-semibold";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -28,7 +30,7 @@ export function Navbar() {
             height={32}
             className="rounded-md"
           />
-          Harry Bone <span className="text-[var(--color-green)]">Drums</span>
+          Harry Bone <span className="text-[var(--color-muted)] font-medium">Drums</span>
         </Link>
 
         {/* Desktop nav */}
@@ -42,20 +44,9 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/studentportallogin"
-            className="text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
-          >
-            Student Portal
+          <Link href="/contact" className={bookButton}>
+            Book
           </Link>
-          <a
-            href="https://wa.me/447984263112"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="whatsapp-pulse text-sm bg-[var(--color-green)] text-white px-4 py-2 rounded-full hover:bg-[var(--color-green-light)] transition-colors font-medium"
-          >
-            WhatsApp
-          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -78,27 +69,18 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors py-1"
+              className="block text-base text-[var(--color-foreground)] transition-colors py-2"
             >
               {link.label}
             </Link>
           ))}
-          <a
-            href="https://www.harrybonedrumlessons.com/studentportallogin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors py-1"
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className={`inline-block mt-2 ${bookButton}`}
           >
-            Student Portal
-          </a>
-          <a
-            href="https://wa.me/447984263112"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-sm bg-[var(--color-green)] text-white px-4 py-2 rounded-full font-medium mt-2"
-          >
-            WhatsApp
-          </a>
+            Book a &pound;10 trial
+          </Link>
         </div>
       )}
     </nav>
