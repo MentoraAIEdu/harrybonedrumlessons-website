@@ -55,7 +55,7 @@ export function Footer() {
               >
                 harrybonedrumlessons@gmail.com
               </a>
-              <p>Bristol, UK</p>
+              <p>Brislington, Bristol</p>
             </div>
           </div>
         </div>

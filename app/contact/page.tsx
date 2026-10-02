@@ -52,7 +52,7 @@ export default function ContactPage() {
 
           <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5 text-center">
             <p className="font-semibold text-[var(--color-foreground)] mb-1">Location</p>
-            <p className="text-sm text-[var(--color-muted)]">Bristol, UK</p>
+            <p className="text-sm text-[var(--color-muted)]">Brislington, Bristol</p>
           </div>
         </div>
       </section>

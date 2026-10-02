@@ -14,18 +14,14 @@ export default function Home() {
     telephone: "+447984263112",
     email: "harrybonedrumlessons@gmail.com",
     image: "https://harrybonedrumlessons.com/harry-hero.jpg",
+    // Area only, deliberately: no street, postcode or coordinates. The studio
+    // is at home, and its exact location isn't shown on maps (Oct 2026).
     address: {
       "@type": "PostalAddress",
-      streetAddress: "2a Gillebank Close",
-      addressLocality: "Bristol",
-      postalCode: "BS14 8HT",
+      addressLocality: "Brislington, Bristol",
       addressCountry: "GB",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 51.41094,
-      longitude: -2.55072,
-    },
+    areaServed: "Bristol",
     priceRange: "£10–£40",
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",

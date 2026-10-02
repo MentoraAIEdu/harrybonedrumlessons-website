@@ -117,28 +117,10 @@ export default function AboutPage() {
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
             Where to find me
           </h2>
-          <p className="text-[var(--color-muted)] mb-8">
-            I teach from my home studio in Bristol, or I can come to you.
-          </p>
-          <div className="aspect-video rounded-xl overflow-hidden border border-[var(--color-card-border)]">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.5708726729117!2d-2.5507226230732565!3d51.41093917179158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48718f4ecfc4a8ab%3A0xadf6d66465bbff86!2sHarry%20Bone%20Drum%20Lessons!5e0!3m2!1sen!2suk!4v1765995859348!5m2!1sen!2suk"
-              title="Harry Bone Drum Lessons — Bristol"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full"
-            />
-          </div>
-          <p className="mt-3 text-sm text-center">
-            <a
-              href="https://share.google/G3t25yQiA3ZamtySP"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--color-green)] hover:underline"
-            >
-              View on Google Maps &rarr;
-            </a>
+          <p className="text-[var(--color-muted)]">
+            I&apos;m based in the Brislington area of Bristol. I teach from my
+            home studio, or I can come to you. Get in touch and I&apos;ll send
+            directions when we book your first lesson.
           </p>
         </div>
       </section>
