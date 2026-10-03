@@ -69,7 +69,7 @@ export function BookingForm() {
 
     const ok: Record<Q, boolean> = {
       who: !!who,
-      student: who === "me" || (!!student.trim() && !!age.trim()),
+      student: !!student.trim() && !!age.trim(),
       level: !!level,
       where: !!where,
       contact: !!name.trim() && !!phone.trim() && EMAIL_RE.test(email.trim()),
@@ -83,7 +83,7 @@ export function BookingForm() {
     }
 
     const rows: [string, string][] = [["Lessons for", labelOf(WHO, who)]];
-    if (child) rows.push(["Student", student.trim()], ["Age", age.trim()]);
+    rows.push(["Student", student.trim()], ["Age", age.trim()]);
     rows.push(
       ["Played before?", labelOf(LEVEL, level)],
       ["Where", labelOf(WHERE, where)],
@@ -93,7 +93,7 @@ export function BookingForm() {
     );
     if (note.trim()) rows.push(["Anything else", note.trim()]);
 
-    const subject = `Trial lesson request: ${name.trim()}${child ? ` (for ${student.trim()}, ${age.trim()})` : ""}`;
+    const subject = `Trial lesson request: ${name.trim()}${child ? ` (for ${student.trim()}, ${age.trim()})` : ` (age ${age.trim()})`}`;
     const body = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
     const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
@@ -216,38 +216,38 @@ export function BookingForm() {
           <span className="n">02</span>
           <span>{who === "child" ? "About your child" : who === "me" ? "About you" : "About the student"}</span>
         </legend>
-        {who !== "me" && (
-          <div className="pair">
-            <label className="fld">
-              <span>First name</span>
-              <input
-                className="in"
-                name="student"
-                autoComplete="off"
-                required
-                value={student}
-                onChange={(e) => {
-                  setStudent(e.target.value);
-                  clear("student");
-                }}
-              />
-            </label>
-            <label className="fld">
-              <span>Age</span>
-              <input
-                className="in"
-                name="age"
-                inputMode="numeric"
-                required
-                value={age}
-                onChange={(e) => {
-                  setAge(e.target.value);
-                  clear("student");
-                }}
-              />
-            </label>
-          </div>
-        )}
+        {/* The same two boxes whoever the lessons are for: a child's name and
+            age, or the adult learner's own. Both required either way. */}
+        <div className="pair">
+          <label className="fld">
+            <span>First name</span>
+            <input
+              className="in"
+              name="student"
+              autoComplete="off"
+              required
+              value={student}
+              onChange={(e) => {
+                setStudent(e.target.value);
+                clear("student");
+              }}
+            />
+          </label>
+          <label className="fld">
+            <span>Age</span>
+            <input
+              className="in"
+              name="age"
+              inputMode="numeric"
+              required
+              value={age}
+              onChange={(e) => {
+                setAge(e.target.value);
+                clear("student");
+              }}
+            />
+          </label>
+        </div>
         <p className="err">Add a name and age.</p>
       </fieldset>
 
