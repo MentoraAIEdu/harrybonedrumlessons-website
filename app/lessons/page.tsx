@@ -1,4 +1,4 @@
-import { EmbedPoster } from "../components/EmbedPoster";
+import { Embed } from "../components/Embed";
 import { PhotoSlot } from "../components/PhotoSlot";
 import { BookButton, FinalBarline, PriceList, SecHead } from "../components/Section";
 import { WHATSAPP_URL, pageMetadata } from "../lib/site";
@@ -160,14 +160,10 @@ export default function LessonsPage() {
               I use Soundslice in lessons and for practice between them. You can slow it down, loop sections and play
               along with backing tracks. Here’s a free example to try.
             </p>
-            <EmbedPoster
+            <Embed
               src="https://www.soundslice.com/slices/TBWbc/embed/"
               title="Soundslice example"
-              ariaLabel="Load the Soundslice example"
-              caption="Play along with the notation."
-              sub="Soundslice · loads when you tap · best on a tablet or computer"
-              groove="rock"
-              count
+              caption="Play along with the notation. Best on a tablet or computer."
               style={{ aspectRatio: "4/3" }}
             />
             <div className="vid-links">

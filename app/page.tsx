@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { EmbedPoster } from "./components/EmbedPoster";
+import { Embed } from "./components/Embed";
 import { BookButton, FinalBarline, PriceList, SecHead } from "./components/Section";
 import { Stave } from "./components/Stave";
 import { PLAYLIST_ID, PLAYLIST_URL, REVIEWS, SITE_URL, WHATSAPP_URL, pageMetadata } from "./lib/site";
@@ -172,13 +172,10 @@ export default function Home() {
                 <span>on the update service</span>
               </div>
             </div>
-            <EmbedPoster
-              src={`https://www.youtube-nocookie.com/embed/videoseries?list=${PLAYLIST_ID}&autoplay=1&rel=0`}
+            <Embed
+              src={`https://www.youtube-nocookie.com/embed/videoseries?list=${PLAYLIST_ID}&rel=0`}
               title="Harry Bone Drums, practice showcase playlist"
-              ariaLabel="Play playlist: Grade 3 to Grade 8, plus double kick"
               caption="Grade 3 to Grade 8, plus double kick."
-              sub="YouTube playlist · plays when you tap"
-              groove="double"
             />
             <div className="vid-links">
               <a className="link" href={PLAYLIST_URL} target="_blank" rel="noopener noreferrer">

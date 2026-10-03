@@ -1,4 +1,4 @@
-import { EmbedPoster } from "../components/EmbedPoster";
+import { Embed } from "../components/Embed";
 import { PhotoSlot } from "../components/PhotoSlot";
 import { BookButton, FinalBarline, SecHead } from "../components/Section";
 import { PARTNER_APP_URL, PLAYLIST_ID, PLAYLIST_URL, WHATSAPP_URL, pageMetadata } from "../lib/site";
@@ -147,13 +147,10 @@ export default function AboutPage() {
               Here’s my playing across different levels, from beginner-friendly Grade 3 through to advanced Grade 8,
               plus my double-kick progression. This is the kind of progress you can expect with focused work.
             </p>
-            <EmbedPoster
-              src={`https://www.youtube-nocookie.com/embed/2aPfRyOoMQI?autoplay=1&rel=0&list=${PLAYLIST_ID}`}
+            <Embed
+              src={`https://www.youtube-nocookie.com/embed/2aPfRyOoMQI?rel=0&list=${PLAYLIST_ID}`}
               title="Rockschool Grade 3 drum piece played by Harry Bone"
-              ariaLabel="Play video: Rockschool Grade 3, played by me"
               caption="Rockschool Grade 3, played by me."
-              sub="YouTube · plays when you tap"
-              groove="rock"
             />
             <div className="vid-links">
               <a className="link" href={PLAYLIST_URL} target="_blank" rel="noopener noreferrer">
