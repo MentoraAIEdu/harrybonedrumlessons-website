@@ -1,292 +1,198 @@
-import type { Metadata } from "next";
-import { TypeformEmbed } from "../components/TypeformEmbed";
-import { SoundsliceEmbed } from "../components/SoundsliceEmbed";
+import { EmbedPoster } from "../components/EmbedPoster";
 import { PhotoSlot } from "../components/PhotoSlot";
+import { BookButton, FinalBarline, PriceList, SecHead } from "../components/Section";
+import { WHATSAPP_URL, pageMetadata } from "../lib/site";
 
-export const metadata: Metadata = {
-  title: "Lessons & Pricing",
+export const metadata = pageMetadata({
+  path: "/lessons",
+  title: "Drum Lessons & Prices in Bristol | Harry Bone",
   description:
-    "Drum lessons in Brislington, Bristol: studio or mobile. From £20/session. Trial lesson £10. Rockschool prep, song-based learning, all ages welcome.",
-  openGraph: {
-    title: "Drum Lessons & Pricing | Harry Bone, Bristol",
-    description:
-      "From £20/session. Trial lesson £10. Studio or mobile. Rockschool prep, song-based learning, all ages.",
-    url: "https://harrybonedrumlessons.com/lessons",
-    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone Drum Lessons" }],
-  },
-};
+    "Drum lessons in Brislington, Bristol from £20. Trial lesson £10. Ages 7 and up, beginners to Rockschool grades. Studio or home lessons, no travel fee.",
+});
+
+const WORK_ON = [
+  ["Song mastery", "Learn the tracks you love with proper technique and musicality. This is what most students come for."],
+  ["Technical foundation", "Coordination, timing, stick control, independence. The building blocks that make everything else possible."],
+  ["Custom exercises", "A range of ready-made exercises I’ve built over the years. If something new comes up, I’ll write something specifically for you."],
+  ["Musical understanding", "Reading notation, basic theory, how drums fit into music. Always connected to real playing."],
+  ["Performance skills", "Playing with others, managing nerves, thinking like a band member rather than a soloist."],
+  ["Rockschool grade prep", "If exams are your thing, I’ll get you ready. Structured prep, mock tests and clear targets."],
+];
 
 export default function LessonsPage() {
   return (
-    <main className="min-h-screen pt-24">
-      {/* ─── Intro ───────────────────────────────────────── */}
-      <section className="hero-gradient py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-[var(--color-foreground)]">
-            Lessons &amp; Pricing
-          </h1>
-          <p className="text-lg text-[var(--color-muted)] leading-relaxed">
-            I&apos;ll help you learn the songs you want to play while building the
-            technical foundation to support your growth. Every lesson is tailored
-            to you.
-          </p>
-        </div>
-      </section>
-
-      {/* ─── What to expect (moved from the homepage) ────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            What to expect
-          </h2>
-          <div className="space-y-4 text-[var(--color-muted)] leading-relaxed">
-            <p>
-              Every student is different, so every lesson is different. Whether
-              you&apos;re 7 or 70, a complete beginner or prepping for a Rockschool
-              exam, I tailor each session to where you are and where you want to go.
+    <main>
+      <section className="page-head">
+        <div className="wrap two" style={{ alignItems: "center" }}>
+          <div className="stack g5">
+            <span className="t-mono muted">Lessons &amp; Pricing</span>
+            <h1 className="t-display">Lessons &amp; Pricing</h1>
+            <p className="t-lead">
+              I’ll help you learn the songs you want to play while building the technique to back them up. Every lesson
+              is tailored to you.
             </p>
-            <p>
-              Most of my students learn songs they love while building technique
-              alongside. I use electronic drums (no noise complaints), digital
-              resources, and a structured approach, but it never feels like school.
-              It should feel like fun, because that&apos;s when you learn best.
-            </p>
+            <div className="btn-row">
+              <BookButton />
+            </div>
           </div>
+          <PhotoSlot
+            src="photos/teaching.jpg"
+            alt="Harry teaching a drum lesson"
+            label="Paradiddle · R L R R L R L L"
+            groove="paradiddle"
+          />
         </div>
       </section>
 
-      {/* ─── What we cover ───────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            What we&apos;ll work on
-          </h2>
-          <p className="text-[var(--color-muted)] leading-relaxed mb-8">
-            It depends on you. But here are the areas I typically cover:
-          </p>
+      <section className="sec alt">
+        <div className="wrap score">
+          <SecHead mark="A" label="Prices" title="Prices" />
+          <PriceList
+            shareNote="1 hour · save £5"
+            note="No sign-up fees, no contracts. Pay monthly, or set up auto-pay if you prefer."
+          />
+        </div>
+      </section>
 
-          <div className="space-y-4">
-            {[
-              {
-                title: "Song mastery",
-                desc: "Learn the tracks you love with proper technique and musicality. This is what most students come for.",
-              },
-              {
-                title: "Technical foundation",
-                desc: "Coordination, timing, stick control, independence: the building blocks that make everything else possible.",
-              },
-              {
-                title: "Custom exercises",
-                desc: "You'll get a range of ready-made exercises I've built over the years to help my students. And if something new comes up that needs a fresh approach, I'll create something specifically for you. No generic worksheets.",
-              },
-              {
-                title: "Musical understanding",
-                desc: "Reading notation, basic theory, understanding how drums fit into music. Not dry. Always connected to real playing.",
-              },
-              {
-                title: "Performance skills",
-                desc: "Playing with others, managing nerves, thinking like a band member rather than a soloist.",
-              },
-              {
-                title: "Rockschool grade prep",
-                desc: "If exams are your thing, I'll get you ready. Structured prep, mock tests, and clear targets.",
-              },
-            ].map((area) => (
-              <div
-                key={area.title}
-                className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5"
-              >
-                <p className="font-semibold text-[var(--color-foreground)] mb-1">
-                  {area.title}
-                </p>
-                <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-                  {area.desc}
-                </p>
+      <section className="sec flush">
+        <div className="wrap score">
+          <SecHead mark="B" label="How it works" title="How lessons work" />
+          <ul className="list ticks">
+            <li><span>Rolling, usually 4 a month. Change the schedule to suit you.</span></li>
+            <li><span>Book, cancel and reschedule in the Student Portal, for you or your parents.</span></li>
+            <li><span>Auto-pay and SMS reminders if you want them.</span></li>
+            <li><span>I reply within 24 hours.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="sec">
+        <div className="wrap score">
+          <SecHead mark="C" label="Where" title="Studio or your home: your choice" />
+          <div className="stack g5">
+            <div className="two" style={{ gap: "var(--s4)" }}>
+              <div className="card stack g3">
+                <h3 className="t-h3">My home studio</h3>
+                <p className="t-mono muted">Brislington, Bristol</p>
+                <ul className="list ticks">
+                  <li><span>Professional electronic drum setup</span></li>
+                  <li><span>No noise concerns</span></li>
+                  <li><span>Full technology integration</span></li>
+                </ul>
               </div>
-            ))}
+              <div className="card stack g3">
+                <h3 className="t-h3">Your home</h3>
+                <p className="t-mono muted">Anywhere in Bristol</p>
+                <ul className="list ticks">
+                  <li><span>Learn in your own space</span></li>
+                  <li><span>No travel fees</span></li>
+                  <li><span>Great for younger students</span></li>
+                </ul>
+              </div>
+            </div>
+            <PhotoSlot
+              src="photos/studio.jpg"
+              alt="Harry's home studio in Brislington"
+              ar="16/7"
+              label="Basic beat · 1 + 2 + 3 + 4 +"
+              groove="basic"
+              fill
+              count
+            />
           </div>
         </div>
       </section>
 
-      {/* ─── Interactive sheet music (moved from the homepage) ─ */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Interactive learning with Soundslice
-          </h2>
-          <p className="text-[var(--color-muted)] mb-4 leading-relaxed">
-            I use Soundslice for interactive sheet music, both in lessons and for
-            practice between sessions. You can slow down, loop sections, and play
-            along with backing tracks. Here&apos;s a free example to try:
-          </p>
-          <p className="text-sm text-[var(--color-muted)] mb-8">
-            Hit play below and follow along with the notation. You can adjust the
-            tempo using the controls.
-          </p>
-          <SoundsliceEmbed sliceUrl="https://www.soundslice.com/slices/TBWbc/embed/" />
-          <p className="text-xs text-[var(--color-muted)] mt-3 text-center italic">
-            *Best viewed on tablet or computer
-          </p>
+      <section className="sec alt">
+        <div className="wrap score">
+          <SecHead mark="D" label="Expect" title="What to expect" />
+          <div className="prose">
+            <p>
+              Every student is different, so every lesson is different. Whether you’re 7 or 70, a complete beginner or
+              prepping for a Rockschool exam, I tailor each session to where you are and where you want to go.
+            </p>
+            <p>
+              Most of my students learn songs they love while building technique alongside. I use electronic drums (no
+              noise complaints), digital resources, and a structured approach, but it never feels like school. It
+              should feel like fun, because that’s when you learn best.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ─── Teaching resources (moved from the homepage) ─── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Professional teaching resources
-          </h2>
-          <p className="text-[var(--color-muted)] mb-6 leading-relaxed">
-            Every student gets access to an exclusive online library. You&apos;ll
-            receive a personal access code when lessons begin.
-          </p>
-          <ul className="space-y-3">
-            {[
-              "100+ songs organised from beginner to advanced",
-              "Step-by-step technique courses",
-              "Personalised homework assignments",
-              "Professional backing tracks to play along with",
-              "Interactive Soundslice exercises for practice between lessons",
-              "Available 24/7 from any device",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[var(--color-muted)]">
-                <span className="text-[var(--color-green)] mt-0.5 flex-shrink-0">&#10003;</span>
-                <span className="text-sm">{item}</span>
+      <section className="sec flush">
+        <div className="wrap score">
+          <SecHead mark="E" label="Content" title="What we’ll work on">
+            <p className="muted">It depends on you. These are the areas I usually cover.</p>
+          </SecHead>
+          <ul className="list">
+            {WORK_ON.map(([title, text]) => (
+              <li key={title}>
+                <b>{title}</b>
+                <span className="muted">{text}</span>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* ─── Studio vs Mobile ────────────────────────────── */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            Studio or your home: your choice
-          </h2>
-          <div className="mb-6">
-            <PhotoSlot src="photos/studio.jpg" alt="Harry's home studio with the electronic drum kit" />
-          </div>
+      <section className="sec">
+        <div className="wrap score">
+          <SecHead mark="F" label="Resources" title="Teaching resources">
+            <p className="muted">Every student gets a personal access code to my online library when lessons begin.</p>
+          </SecHead>
+          <ul className="list ticks">
+            <li><span>100+ songs organised from beginner to advanced</span></li>
+            <li><span>Step-by-step technique courses</span></li>
+            <li><span>Personalised homework assignments</span></li>
+            <li><span>Professional backing tracks to play along with</span></li>
+            <li><span>Interactive Soundslice exercises for practice between lessons</span></li>
+            <li><span>Available 24/7 from any device</span></li>
+          </ul>
+        </div>
+      </section>
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-6">
-              <h3 className="font-semibold text-[var(--color-foreground)] mb-3">
-                My home studio
-              </h3>
-              <ul className="space-y-2 text-sm text-[var(--color-muted)]">
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-green)] mt-0.5">&#10003;</span>
-                  Professional electronic drum setup
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-green)] mt-0.5">&#10003;</span>
-                  No noise concerns
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-green)] mt-0.5">&#10003;</span>
-                  Full technology integration
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-6">
-              <h3 className="font-semibold text-[var(--color-foreground)] mb-3">
-                Your home (mobile)
-              </h3>
-              <ul className="space-y-2 text-sm text-[var(--color-muted)]">
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-green)] mt-0.5">&#10003;</span>
-                  Learn in your own space
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-green)] mt-0.5">&#10003;</span>
-                  No travel fees
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--color-green)] mt-0.5">&#10003;</span>
-                  Great for younger students
-                </li>
-              </ul>
+      <section className="sec on-ink">
+        <div className="wrap score">
+          <SecHead mark="G" label="Try it" title="Interactive sheet music" />
+          <div className="stack g5">
+            <p className="muted">
+              I use Soundslice in lessons and for practice between them. You can slow it down, loop sections and play
+              along with backing tracks. Here’s a free example to try.
+            </p>
+            <EmbedPoster
+              src="https://www.soundslice.com/slices/TBWbc/embed/"
+              title="Soundslice example"
+              ariaLabel="Load the Soundslice example"
+              caption="Play along with the notation."
+              sub="Soundslice · loads when you tap · best on a tablet or computer"
+              groove="rock"
+              count
+              style={{ aspectRatio: "4/3" }}
+            />
+            <div className="vid-links">
+              <a className="link" href="https://www.soundslice.com/slices/TBWbc/" target="_blank" rel="noopener noreferrer">
+                Open in Soundslice
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── How it works ────────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            How lessons work
-          </h2>
-
-          <div className="space-y-4 text-[var(--color-muted)] leading-relaxed">
-            <p>
-              Lessons run on a rolling basis, typically 4 per month, but you can
-              adjust the schedule to suit you. Everything is managed through the
-              Student Portal where you (or your parents) can book, cancel, and
-              reschedule easily.
-            </p>
-            <p>
-              Auto-pay is available if you prefer hassle-free payments, and I can
-              set up SMS reminders so you never forget a lesson.
-            </p>
+      <section className="sec flush">
+        <div className="wrap score">
+          <SecHead mark="H" label="Start" title="Ready to start?" />
+          <div className="cta">
+            <p className="t-lead">Book a £10 trial and I’ll get back to you within 24 hours.</p>
+            <div className="btn-row">
+              <BookButton />
+              <a className="btn btn-secondary" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                Message me on WhatsApp
+              </a>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* ─── Pricing ─────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-[var(--color-foreground)]">
-            Pricing
-          </h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            {[
-              { label: "Trial", price: "£10", duration: "30 min", highlight: true },
-              { label: "Standard", price: "£20", duration: "30 min", highlight: false },
-              { label: "Extended", price: "£30", duration: "45 min", highlight: false },
-              { label: "Full", price: "£40", duration: "1 hour", highlight: false },
-            ].map((tier) => (
-              <div
-                key={tier.label}
-                className={`rounded-xl p-5 text-center ${
-                  tier.highlight
-                    ? "bg-[var(--color-green)] text-white"
-                    : "bg-[var(--color-card)] border border-[var(--color-card-border)]"
-                }`}
-              >
-                <p className={`text-xs mb-1 ${tier.highlight ? "text-white/80" : "text-[var(--color-muted)]"}`}>
-                  {tier.label}
-                </p>
-                <p className="text-2xl font-bold">{tier.price}</p>
-                <p className={`text-xs mt-1 ${tier.highlight ? "text-white/80" : "text-[var(--color-muted)]"}`}>
-                  {tier.duration}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5 text-center">
-            <p className="text-sm text-[var(--color-muted)]">
-              <span className="font-semibold text-[var(--color-foreground)]">Family discount:</span>{" "}
-              Parent &amp; child shared lesson: &pound;35/hour (save &pound;5)
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CTA — Typeform ──────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)] text-center">
-            Ready to start?
-          </h2>
-          <p className="text-[var(--color-muted)] mb-8 text-center">
-            Fill in the form and I&apos;ll get back to you within 24 hours.
-          </p>
-          <TypeformEmbed formId="MV64VUh7" />
-        </div>
+        <FinalBarline />
       </section>
     </main>
   );

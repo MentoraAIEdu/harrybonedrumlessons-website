@@ -5,11 +5,12 @@ export const metadata: Metadata = {
   title: "Student Portal Login",
   description:
     "Log in to your student portal to access lesson notes, scheduling, resources, and more.",
+  alternates: { canonical: "https://harrybonedrumlessons.com/studentportallogin" },
 };
 
 export default function StudentPortalLoginPage() {
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen">
       <section className="hero-gradient py-16 px-6">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-[var(--color-foreground)]">

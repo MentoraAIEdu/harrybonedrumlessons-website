@@ -1,85 +1,42 @@
 import Link from "next/link";
+import { EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from "../lib/site";
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-warm-bg)] border-t border-[var(--color-card-border)] py-12 px-6">
-      <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
-          <div>
-            <p className="text-lg font-bold text-[var(--color-foreground)] mb-2">
-              Harry Bone <span className="text-[var(--color-muted)] font-medium">Drums</span>
-            </p>
-            <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-              Professional drum lessons in Brislington, Bristol.
-              <br />
-              BMus (Hons) RWCMD. Enhanced DBS checked.
+    <footer className="foot on-ink">
+      <div className="wrap">
+        <div className="foot-grid">
+          <div className="foot-col">
+            <Link className="wm lg" href="/">
+              <b>Harry Bone</b>
+              <i>•</i>
+              <span>Drum Lessons</span>
+            </Link>
+            <p className="t-small muted" style={{ marginTop: 8, maxWidth: 340 }}>
+              Drum lessons in Brislington, Bristol. BMus (Hons) RWCMD. Enhanced DBS checked.
             </p>
           </div>
-
-          <div>
-            <p className="text-sm font-semibold text-[var(--color-foreground)] mb-3">Pages</p>
-            <div className="space-y-2">
-              {[
-                { href: "/about", label: "About" },
-                { href: "/lessons", label: "Lessons & Pricing" },
-                { href: "/reviews", label: "Reviews" },
-                { href: "/contact", label: "Contact" },
-              ].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block text-sm text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+          <div className="foot-col">
+            <span className="t-mono">Pages</span>
+            <Link href="/about">About</Link>
+            <Link href="/lessons">Lessons &amp; Pricing</Link>
+            <Link href="/reviews">Reviews</Link>
+            <Link href="/contact">Contact</Link>
           </div>
-
-          <div className="min-w-0">
-            <p className="text-sm font-semibold text-[var(--color-foreground)] mb-3">Get in Touch</p>
-            <div className="space-y-2 text-sm text-[var(--color-muted)]">
-              <a
-                href="https://wa.me/447984263112"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block hover:text-[var(--color-foreground)] transition-colors"
-              >
-                WhatsApp
-              </a>
-              <a
-                href="mailto:harrybonedrumlessons@gmail.com"
-                className="block hover:text-[var(--color-foreground)] transition-colors break-all"
-              >
-                harrybonedrumlessons@gmail.com
-              </a>
-              <p>Brislington, Bristol</p>
-            </div>
+          <div className="foot-col">
+            <span className="t-mono">Get in touch</span>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              WhatsApp {WHATSAPP_DISPLAY}
+            </a>
+            <a href={`mailto:${EMAIL}`} style={{ fontSize: 15 }}>
+              {EMAIL}
+            </a>
+            <span className="muted place">Brislington, Bristol</span>
           </div>
         </div>
-
-        <div className="border-t border-[var(--color-card-border)] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[var(--color-muted)]">
-            &copy; {new Date().getFullYear()} Harry Bone Drum Lessons
-          </p>
-          <div className="flex items-center gap-4 text-xs text-[var(--color-muted)]">
-            <a
-              href="https://mentoraai.io/open?source=drum_educator"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--color-foreground)] transition-colors"
-            >
-              Partner app
-            </a>
-            <a
-              href="https://www.harrybonedrumlessons.com/studentportallogin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--color-foreground)] transition-colors"
-            >
-              Student Portal
-            </a>
-          </div>
+        <div className="foot-base">
+          <span>© {new Date().getFullYear()} Harry Bone Drum Lessons</span>
+          <Link href="/studentportallogin">Student Portal</Link>
         </div>
       </div>
     </footer>

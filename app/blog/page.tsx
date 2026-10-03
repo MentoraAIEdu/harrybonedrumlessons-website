@@ -7,12 +7,16 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Practical drum learning insights for parents and students. Tips on practice, technique, and progress from Harry Bone.",
+  alternates: { canonical: "https://harrybonedrumlessons.com/blog" },
   openGraph: {
+    type: "website",
+    siteName: "Harry Bone Drum Lessons",
+    locale: "en_GB",
     title: "Drum Blog | Harry Bone Drum Lessons",
     description:
-      "Practical insights on learning drums — for parents and students. Tips on practice, technique, and progress.",
+      "Practical insights on learning drums, for parents and students. Tips on practice, technique, and progress.",
     url: "https://harrybonedrumlessons.com/blog",
-    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone Drum Lessons" }],
+    images: [{ url: "https://harrybonedrumlessons.com/og.jpg", width: 1200, height: 630, alt: "Harry Bone at his electronic drum kit" }],
   },
 };
 
@@ -84,7 +88,7 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen">
       <section className="hero-gradient py-16 px-6">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-[var(--color-foreground)]">

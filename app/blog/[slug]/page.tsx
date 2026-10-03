@@ -301,13 +301,16 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Blog Post" };
 
-  const description = post.snippet || `${post.title} — drum learning insights from Harry Bone.`;
-  const ogImage = post.coverUrl || "https://harrybonedrumlessons.com/harry-hero.jpg";
+  const description = post.snippet || `${post.title}: drum learning insights from Harry Bone.`;
+  const ogImage = post.coverUrl || "https://harrybonedrumlessons.com/og.jpg";
 
   return {
     title: post.title,
     description,
+    alternates: { canonical: `https://harrybonedrumlessons.com/blog/${post.slug}` },
     openGraph: {
+      siteName: "Harry Bone Drum Lessons",
+      locale: "en_GB",
       title: post.title,
       description,
       url: `https://harrybonedrumlessons.com/blog/${post.slug}`,
@@ -336,7 +339,7 @@ export default async function BlogPostPage({
 
   if (!post) {
     return (
-      <main className="min-h-screen pt-24 px-6">
+      <main className="min-h-screen px-6">
         <div className="max-w-3xl mx-auto py-20 text-center">
           <h1 className="text-3xl font-bold mb-4 text-[var(--color-foreground)]">
             Post not found
@@ -350,7 +353,7 @@ export default async function BlogPostPage({
   }
 
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen">
       <article className="py-20 px-6">
         <div className="max-w-3xl mx-auto">
           <Link

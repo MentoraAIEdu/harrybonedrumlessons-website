@@ -1,19 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
+import { Stave, type GrooveName } from "./Stave";
 
 /**
  * An optional photo.
  *
  * If the file exists under /public when the site is built, it shows. If it
- * doesn't, nothing renders at all: no grey box, no placeholder. The text around
- * it carries the space, so every page looks finished with or without photos.
+ * doesn't, the frame is filled with drum notation and a small label instead,
+ * so the page looks finished either way (Design's "empty" photo block).
  *
  * To add a photo later, drop the file at the path the slot names and push.
  * Nothing else needs changing. Slots in use:
- *   harry-hero.jpg          homepage, top
- *   photos/teaching.jpg     homepage, "What lessons are like"
  *   photos/playing.jpg      About, top
+ *   photos/teaching.jpg     Lessons, top
  *   photos/studio.jpg       Lessons, "Studio or your home"
  *
  * The check runs at build time, which is when these pages are generated.
@@ -21,11 +21,20 @@ import Image from "next/image";
 export function PhotoSlot({
   src,
   alt,
-  priority = false,
+  ar = "4/3",
+  label,
+  groove,
+  fill = false,
+  count = false,
 }: {
   src: string;
   alt: string;
-  priority?: boolean;
+  ar?: string;
+  /** Shown above the notation when there is no photo. */
+  label: string;
+  groove: GrooveName;
+  fill?: boolean;
+  count?: boolean;
 }) {
   let present = false;
   try {
@@ -33,19 +42,25 @@ export function PhotoSlot({
   } catch {
     present = false;
   }
-  if (!present) return null;
+
+  const style = { "--ar": ar } as React.CSSProperties;
+
+  if (present) {
+    return (
+      <figure className="photo" style={style}>
+        <div className="frame">
+          <Image src={`/${src}`} alt={alt} width={1200} height={900} sizes="(max-width: 900px) 100vw, 560px" />
+        </div>
+      </figure>
+    );
+  }
 
   return (
-    <div className="rounded-2xl overflow-hidden">
-      <Image
-        src={`/${src}`}
-        alt={alt}
-        width={1200}
-        height={800}
-        sizes="(max-width: 768px) 100vw, 672px"
-        className="w-full h-auto object-cover"
-        priority={priority}
-      />
-    </div>
+    <figure className="photo empty" style={style}>
+      <div className="frame">
+        <span className="t-mono">{label}</span>
+        <Stave groove={groove} fill={fill} count={count} label={label} />
+      </div>
+    </figure>
   );
 }

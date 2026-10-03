@@ -1,169 +1,190 @@
-import type { Metadata } from "next";
+import { EmbedPoster } from "../components/EmbedPoster";
 import { PhotoSlot } from "../components/PhotoSlot";
-import { VideoFacade } from "../components/VideoFacade";
+import { BookButton, FinalBarline, SecHead } from "../components/Section";
+import { PARTNER_APP_URL, PLAYLIST_ID, PLAYLIST_URL, WHATSAPP_URL, pageMetadata } from "../lib/site";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata = pageMetadata({
+  path: "/about",
+  title: "About Harry Bone | Drum teacher in Bristol",
   description:
-    "About Harry Bone, drum teacher in Bristol with a BMus from RWCMD, 20+ years drumming, and specialist training in Latin percussion from Cuba and Brazil.",
-  openGraph: {
-    title: "About Harry Bone | Drum Teacher in Bristol",
-    description:
-      "BMus (Hons) RWCMD, 20+ years drumming, Enhanced DBS checked. Latin percussion training in Cuba and Brazil.",
-    url: "https://harrybonedrumlessons.com/about",
-    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone" }],
-  },
-};
+    "Harry Bone: BMus (Hons) from the Royal Welsh College of Music & Drama, 20+ years playing, teaching drums in Bristol since 2018. Enhanced DBS.",
+});
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen pt-24">
-      {/* ─── Intro ───────────────────────────────────────── */}
-      <section className="hero-gradient py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-[var(--color-foreground)]">
-            About me
-          </h1>
-
-          <div className="mb-8">
-            <PhotoSlot src="photos/playing.jpg" alt="Harry Bone playing drums" />
-          </div>
-          <div className="space-y-4 text-[var(--color-muted)] leading-relaxed text-lg">
-            <p>
-              I&apos;m Harry, a professional drum teacher based in Bristol with
-              over 20 years behind the kit and 6+ years of dedicated teaching
-              experience.
-            </p>
-            <p>
-              I earned a scholarship to the Royal Welsh College of Music and Drama
-              in 2014, where I graduated with a BMus (Hons) in 2018. During that
-              time I developed expertise across jazz, orchestral percussion, rock,
-              pop, and everything in between.
-            </p>
-            <p>
-              I&apos;ve also studied Latin percussion in Cuba and Samba in Rio de
-              Janeiro. Those experiences gave me a rhythmic vocabulary that feeds
-              directly into my teaching. There&apos;s a world of rhythm beyond
-              standard 4/4, and I love sharing that with students.
+    <main>
+      <section className="page-head">
+        <div className="wrap two" style={{ alignItems: "center" }}>
+          <div className="stack g5">
+            <span className="t-mono muted">About</span>
+            <h1 className="t-display">About me</h1>
+            <p className="t-lead">
+              I’m Harry, a professional drum teacher based in Bristol with over 20 years behind the kit and 6+ years of
+              dedicated teaching experience.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* ─── Teaching journey ────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            How I got here
-          </h2>
-
-          <div className="space-y-4 text-[var(--color-muted)] leading-relaxed">
-            <p>
-              I started teaching in 2018, went full-time in 2022, and haven&apos;t
-              looked back. Teaching turned out to be what I&apos;m best at: helping
-              other people unlock what&apos;s inside them.
-            </p>
-            <p>
-              I also work as a Freelance Music Practitioner with Bristol Beacon,
-              providing 1-on-1 instruction across Bristol schools and supporting
-              ensemble activities throughout the year. It keeps me sharp and
-              connected to how different people learn.
-            </p>
-            <p>
-              I&apos;m fully Enhanced DBS checked (on the update service, so always
-              current), and I take safeguarding seriously. It matters when
-              you&apos;re inviting someone into your home or trusting them with your child.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Philosophy ──────────────────────────────────── */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-foreground)]">
-            My teaching philosophy
-          </h2>
-
-          <div className="space-y-4 text-[var(--color-muted)] leading-relaxed">
-            <p>
-              Every student learns differently. Some want to play their favourite
-              songs, some want to work through grades, some just want to have fun
-              and see where it goes. All of that is fine. My job is to meet you
-              where you are and help you get where you want to go.
-            </p>
-            <p>
-              I believe in clear structure and visible progress. You should be able
-              to look back after a month and see how far you&apos;ve come. But
-              structure doesn&apos;t mean boring. I keep lessons engaging, musical,
-              and always connected to real songs and real playing.
-            </p>
-            <p>
-              For older students and adults (13 and over), I&apos;ve also built{" "}
-              <a
-                href="https://mentoraai.io/open?source=drum_educator"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--color-foreground)] underline underline-offset-4"
-              >
-                Partner
-              </a>
-              , a practice app that remembers each session and plans the next
-              one around it.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── My playing (moved from the homepage) ────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            My playing
-          </h2>
-          <p className="text-[var(--color-muted)] mb-8 leading-relaxed">
-            Here&apos;s my playing across different levels, from beginner-friendly
-            Grade 3 through to advanced Grade 8, plus my double-kick progression.
-            This is the kind of progress you can expect with focused work.
-          </p>
-          <VideoFacade
-            embedUrl="https://www.youtube-nocookie.com/embed/videoseries?list=PLnW7DBoH5op8JxS3NwyhbSF51bxWpDvY5"
-            title="Harry Bone Drums: Practice Showcase"
-            label="Grade 3 to Grade 8, plus double kick. A playlist."
+          <PhotoSlot
+            src="photos/playing.jpg"
+            alt="Harry Bone playing drums"
+            label="Double kick · 16ths"
+            groove="double"
+            count
           />
         </div>
       </section>
 
-      {/* ─── Location ────────────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Where to find me
-          </h2>
-          <p className="text-[var(--color-muted)]">
-            I&apos;m based in the Brislington area of Bristol. I teach from my
-            home studio, or I can come to you. Get in touch and I&apos;ll send
-            directions when we book your first lesson.
-          </p>
+      <section className="sec">
+        <div className="wrap score">
+          <SecHead mark="A" label="Training" title="Where I learned" />
+          <div className="stack g5">
+            <div className="range">
+              <div>
+                <b>BMus (Hons)</b>
+                <span>Royal Welsh College of Music &amp; Drama. Scholarship 2014, graduated 2018.</span>
+              </div>
+              <div>
+                <b>Cuba</b>
+                <span>Latin percussion</span>
+              </div>
+              <div>
+                <b>Rio de Janeiro</b>
+                <span>Samba</span>
+              </div>
+              <div>
+                <b>Bristol Beacon</b>
+                <span>Freelance music practitioner in Bristol schools</span>
+              </div>
+              <div>
+                <b>Jazz to metal</b>
+                <span>Orchestral percussion, rock, pop, double kick</span>
+              </div>
+              <div>
+                <b>Enhanced DBS</b>
+                <span>On the update service, so always current</span>
+              </div>
+            </div>
+            <div className="prose muted">
+              <p>
+                At the Royal Welsh College I developed expertise across jazz, orchestral percussion, rock, pop, and
+                everything in between.
+              </p>
+              <p>
+                Cuba and Rio gave me a rhythmic vocabulary that feeds directly into my teaching. There’s a world of
+                rhythm beyond standard 4/4, and I love sharing that with students.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ─── CTA ─────────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-[var(--color-warm-bg)]">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-foreground)]">
-            Want to give it a try?
-          </h2>
-          <p className="text-[var(--color-muted)] mb-8">
-            Trial lesson: &pound;10 for 30 minutes. No commitment.
-          </p>
-          <a
-            href="/contact"
-            className="bg-[var(--color-green)] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[var(--color-green-light)] transition-colors"
-          >
-            Get in Touch
-          </a>
+      <section className="sec alt">
+        <div className="wrap score">
+          <SecHead mark="B" label="Story" title="How I got here" />
+          <div className="stack g6">
+            <ol className="timeline">
+              <li>
+                <span className="yr">2014</span>
+                <span>Scholarship to the Royal Welsh College of Music &amp; Drama</span>
+              </li>
+              <li>
+                <span className="yr">2018</span>
+                <span>Graduated BMus (Hons). Started teaching.</span>
+              </li>
+              <li>
+                <span className="yr">2022</span>
+                <span>Went full-time</span>
+              </li>
+              <li>
+                <span className="yr">Now</span>
+                <span>Lessons in Brislington, and 1-on-1 teaching in Bristol schools with Bristol Beacon</span>
+              </li>
+            </ol>
+            <div className="prose">
+              <p>
+                Teaching turned out to be what I’m best at: helping other people unlock what’s inside them. Working
+                with Bristol Beacon, across schools and ensembles through the year, keeps me sharp and connected to how
+                different people learn.
+              </p>
+              <p>
+                I’m fully Enhanced DBS checked, and I take safeguarding seriously. It matters when you’re inviting
+                someone into your home or trusting them with your child.
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <section className="sec flush">
+        <div className="wrap score">
+          <SecHead mark="C" label="Teaching" title="My teaching philosophy" />
+          <div className="prose">
+            <p>
+              Every student learns differently. Some want to play their favourite songs, some want to work through
+              grades, some just want to have fun and see where it goes. All of that is fine. My job is to meet you
+              where you are and help you get where you want to go.
+            </p>
+            <p>
+              I believe in clear structure and visible progress. You should be able to look back after a month and see
+              how far you’ve come. But structure doesn’t mean boring. I keep lessons engaging, musical, and always
+              connected to real songs and real playing.
+            </p>
+            <p>
+              For older students and adults (13 and over), I’ve also built{" "}
+              <a href={PARTNER_APP_URL} target="_blank" rel="noopener noreferrer">
+                Partner
+              </a>
+              , a practice app that remembers each session and plans the next one around it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="sec on-ink">
+        <div className="wrap score">
+          <SecHead mark="D" label="Playing" title="My playing" />
+          <div className="stack g5">
+            <p className="muted">
+              Here’s my playing across different levels, from beginner-friendly Grade 3 through to advanced Grade 8,
+              plus my double-kick progression. This is the kind of progress you can expect with focused work.
+            </p>
+            <EmbedPoster
+              src={`https://www.youtube-nocookie.com/embed/2aPfRyOoMQI?autoplay=1&rel=0&list=${PLAYLIST_ID}`}
+              title="Rockschool Grade 3 drum piece played by Harry Bone"
+              ariaLabel="Play video: Rockschool Grade 3, played by me"
+              caption="Rockschool Grade 3, played by me."
+              sub="YouTube · plays when you tap"
+              groove="rock"
+            />
+            <div className="vid-links">
+              <a className="link" href={PLAYLIST_URL} target="_blank" rel="noopener noreferrer">
+                Full playlist on YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="sec flush">
+        <div className="wrap score">
+          <SecHead mark="E" label="Where" title="Where to find me" />
+          <div className="cta">
+            <p className="t-lead">
+              I’m based in the Brislington area of Bristol. I teach from my home studio, or I can come to you. Get in
+              touch and I’ll send directions when we book your first lesson.
+            </p>
+            <div className="card stack g4" style={{ marginTop: "var(--s3)" }}>
+              <h3 className="t-h3">Want to give it a try?</h3>
+              <p className="muted">Trial lesson: £10 for 30 minutes. No commitment.</p>
+              <div className="btn-row">
+                <BookButton />
+                <a className="btn btn-secondary" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                  Message me on WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <FinalBarline />
       </section>
     </main>
   );

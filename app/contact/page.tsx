@@ -1,66 +1,43 @@
-import type { Metadata } from "next";
-import { TypeformEmbed } from "../components/TypeformEmbed";
+import { BookingForm } from "../components/BookingForm";
+import { EMAIL, WHATSAPP_URL, pageMetadata } from "../lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Get in touch with Harry Bone for drum lessons in Bristol. WhatsApp, email, or fill in the contact form.",
-  openGraph: {
-    title: "Contact | Harry Bone Drum Lessons",
-    description:
-      "Get in touch for drum lessons in Bristol. WhatsApp, email, or contact form. Trial lesson £10.",
-    url: "https://harrybonedrumlessons.com/contact",
-    images: [{ url: "https://harrybonedrumlessons.com/harry-hero.jpg", alt: "Harry Bone Drum Lessons" }],
-  },
-};
+export const metadata = pageMetadata({
+  path: "/contact",
+  title: "Book a £10 Trial Drum Lesson in Bristol | Harry Bone",
+  description: "Book a 30-minute trial drum lesson in Brislington, Bristol for £10. No commitment. I reply within 24 hours.",
+});
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen pt-24">
-      <section className="hero-gradient py-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-[var(--color-foreground)]">
-            Get in touch
-          </h1>
-          <p className="text-lg text-[var(--color-muted)] leading-relaxed">
-            Drop me a message below and I&apos;ll get back to you within 24 hours.
-            Or WhatsApp me for a quicker response. I usually reply within the hour.
-          </p>
-        </div>
-      </section>
-
-      {/* ─── Contact options ─────────────────────────────── */}
-      <section className="py-12 px-6">
-        <div className="max-w-3xl mx-auto grid sm:grid-cols-3 gap-4 mb-12">
-          <a
-            href="https://wa.me/447984263112"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card-glow bg-[var(--color-card)] border-2 border-[var(--color-green)] rounded-xl p-5 text-center transition-all duration-300 hover:bg-[var(--color-green)] hover:text-white group"
-          >
-            <p className="font-semibold text-[var(--color-green)] mb-1 group-hover:text-white">Send a WhatsApp &rarr;</p>
-            <p className="text-sm text-[var(--color-muted)] group-hover:text-white/80">Quickest way to reach me</p>
-          </a>
-
-          <a
-            href="mailto:harrybonedrumlessons@gmail.com"
-            className="card-glow bg-[var(--color-card)] border-2 border-[var(--color-card-border)] rounded-xl p-5 text-center transition-all duration-300 hover:border-[var(--color-green)] group"
-          >
-            <p className="font-semibold text-[var(--color-foreground)] mb-1 group-hover:text-[var(--color-green)]">Send an Email &rarr;</p>
-            <p className="text-sm text-[var(--color-muted)] break-all">harrybonedrumlessons@gmail.com</p>
-          </a>
-
-          <div className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-xl p-5 text-center">
-            <p className="font-semibold text-[var(--color-foreground)] mb-1">Location</p>
-            <p className="text-sm text-[var(--color-muted)]">Brislington, Bristol</p>
+    <main>
+      <section className="page-head">
+        <div className="wrap bk">
+          <div className="bk-side stack g5">
+            <span className="t-mono muted">Book a trial</span>
+            <h1 className="t-display">Book a £10 trial lesson</h1>
+            <p className="t-lead">
+              30 minutes, no commitment. Tell me a bit about who’s learning and I’ll get back to you within 24 hours.
+            </p>
+            <ul className="list ticks">
+              <li><span>At my studio in Brislington or your home</span></li>
+              <li><span>Electronic kit, so no noise worries</span></li>
+              <li><span>Ages 7 and up, complete beginners welcome</span></li>
+            </ul>
+            <div className="stack g2">
+              <span className="t-mono muted">Rather message?</span>
+              <div className="btn-row">
+                <a className="btn btn-secondary" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                  Message me on WhatsApp
+                </a>
+              </div>
+              <a href={`mailto:${EMAIL}`} className="t-small">
+                {EMAIL}
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ─── Typeform ────────────────────────────────────── */}
-      <section className="pb-20 px-6">
-        <div className="max-w-3xl mx-auto">
-          <TypeformEmbed formId="MV64VUh7" />
+          <div>
+            <BookingForm />
+          </div>
         </div>
       </section>
     </main>

@@ -1,268 +1,251 @@
-import { PhotoSlot } from "./components/PhotoSlot";
-import { VideoFacade } from "./components/VideoFacade";
+import Image from "next/image";
+import Link from "next/link";
+import { EmbedPoster } from "./components/EmbedPoster";
+import { BookButton, FinalBarline, PriceList, SecHead } from "./components/Section";
+import { Stave } from "./components/Stave";
+import { PLAYLIST_ID, PLAYLIST_URL, REVIEWS, SITE_URL, WHATSAPP_URL, pageMetadata } from "./lib/site";
+
+const DESCRIPTION =
+  "Drum lessons in Brislington, Bristol for ages 7 and up. BMus (Hons) RWCMD, Enhanced DBS. At my studio or your home. Book a £10 trial lesson.";
+
+export const metadata = pageMetadata({
+  path: "/",
+  title: "Harry Bone Drum Lessons | Drum teacher in Brislington, Bristol",
+  description: DESCRIPTION,
+});
+
+/*
+ * Structured data for search. Area only, deliberately: no street, postcode or
+ * coordinates (the studio is at home). No opening hours either: they change
+ * too often to list, and people ask when they book. No review or rating
+ * markup: Google ignores ratings a business publishes about itself.
+ */
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": `${SITE_URL}/#business`,
+      name: "Harry Bone Drum Lessons",
+      description: DESCRIPTION,
+      url: SITE_URL,
+      telephone: "+447984263112",
+      email: "harrybonedrumlessons@gmail.com",
+      image: `${SITE_URL}/harry-hero-1600.jpg`,
+      logo: `${SITE_URL}/favicon.png`,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Brislington",
+        addressRegion: "Bristol",
+        addressCountry: "GB",
+      },
+      areaServed: [
+        { "@type": "City", name: "Bristol" },
+        { "@type": "Place", name: "Brislington" },
+      ],
+      priceRange: "£10-£40",
+      founder: { "@id": `${SITE_URL}/#harry` },
+      sameAs: [PLAYLIST_URL],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Drum lessons",
+        itemListElement: [
+          { "@type": "Offer", name: "Trial lesson", price: "10", priceCurrency: "GBP", description: "30-minute trial drum lesson" },
+          { "@type": "Offer", name: "Standard lesson", price: "20", priceCurrency: "GBP", description: "30-minute drum lesson" },
+          { "@type": "Offer", name: "Extended lesson", price: "30", priceCurrency: "GBP", description: "45-minute drum lesson" },
+          { "@type": "Offer", name: "Full lesson", price: "40", priceCurrency: "GBP", description: "1-hour drum lesson" },
+          { "@type": "Offer", name: "Parent and child shared lesson", price: "35", priceCurrency: "GBP", description: "1-hour shared drum lesson" },
+        ],
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#harry`,
+      name: "Harry Bone",
+      jobTitle: "Drum teacher",
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Royal Welsh College of Music & Drama" },
+      worksFor: { "@id": `${SITE_URL}/#business` },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#site`,
+      url: SITE_URL,
+      name: "Harry Bone Drum Lessons",
+      inLanguage: "en-GB",
+    },
+  ],
+};
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Harry Bone Drum Lessons",
-    description:
-      "Professional drum lessons in Brislington, Bristol with Harry Bone. BMus (Hons) from RWCMD, 6+ years teaching experience. In-person at home studio or mobile lessons.",
-    url: "https://harrybonedrumlessons.com",
-    telephone: "+447984263112",
-    email: "harrybonedrumlessons@gmail.com",
-    image: "https://harrybonedrumlessons.com/harry-hero.jpg",
-    // Area only, deliberately: no street, postcode or coordinates. The studio
-    // is at home, and its exact location isn't shown on maps (Oct 2026).
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Brislington, Bristol",
-      addressCountry: "GB",
-    },
-    areaServed: "Bristol",
-    priceRange: "£10–£40",
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "09:00",
-      closes: "20:00",
-    },
-    sameAs: [
-      "https://wa.me/447984263112",
-    ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Drum Lesson Packages",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          name: "Trial Lesson",
-          price: "10",
-          priceCurrency: "GBP",
-          description: "30-minute trial drum lesson",
-        },
-        {
-          "@type": "Offer",
-          name: "Standard Lesson",
-          price: "20",
-          priceCurrency: "GBP",
-          description: "30-minute drum lesson",
-        },
-        {
-          "@type": "Offer",
-          name: "Extended Lesson",
-          price: "30",
-          priceCurrency: "GBP",
-          description: "45-minute drum lesson",
-        },
-        {
-          "@type": "Offer",
-          name: "Full Lesson",
-          price: "40",
-          priceCurrency: "GBP",
-          description: "1-hour drum lesson",
-        },
-      ],
-    },
-  };
-
-  // Three reviews, copied word for word from Senja. Never rewrite or tidy a
-  // quote. Labels ("student"/"parent") are taken from each quote's own words.
-  const reviews = [
-    {
-      quote:
-        "Brilliant teacher, tailored lessons to my musical interests overall and on a week-to-week basis. Always able to help me get unstuck. Great drum kit and teaching resources. Harry has taken me from complete beginner to playing through my favourite songs.",
-      name: "Max",
-      who: "student",
-    },
-    {
-      quote:
-        "Harry is an excellent and encouraging teacher. Our son has progressed massively and is really enjoying the breadth of content to learn. Always timely, polite, clearly very knowledgeable and communicates really clearly. Would recommend Harry to anyone!",
-      name: "Richard",
-      who: "parent",
-    },
-    {
-      quote:
-        "Harry Bone is an experienced, meticulous, and encouraging drum instructor. I am very grateful for his encouragement and guidance, which has greatly improved my son's skills. He also helped him take the exam and obtain certification.",
-      name: "Vicky",
-      who: "parent",
-    },
-  ];
-
-  const prices = [
-    { label: "Trial", length: "30 min", price: "£10" },
-    { label: "Standard", length: "30 min", price: "£20" },
-    { label: "Extended", length: "45 min", price: "£30" },
-    { label: "Full", length: "1 hour", price: "£40" },
-    { label: "Parent and child, shared", length: "1 hour", price: "£35" },
-  ];
-
   return (
-    <main className="min-h-screen">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* 1. Who are you? */}
-      <section className="hero-gradient pt-32 pb-20 px-6">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-sm uppercase tracking-widest text-[var(--color-muted)] mb-5">
-            Drum lessons in Brislington, Bristol
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-bold leading-tight mb-10 text-[var(--color-foreground)]">
-            Hey, I&apos;m Harry.
-            <br />
-            I teach drums.
-          </h1>
-          <div className="flex flex-col sm:flex-row gap-3 mb-14">
-            <a href="/contact" className={primaryButton}>
-              Book a &pound;10 trial
-            </a>
-            <a
-              href="https://wa.me/447984263112"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={secondaryButton}
-            >
-              Message me on WhatsApp
-            </a>
+      {/* Who are you? */}
+      <section>
+        <div className="wrap hero">
+          <div className="hero-photo">
+            <Image
+              src="/harry-hero-1600.jpg"
+              alt="Harry Bone sitting at his electronic drum kit, holding sticks"
+              width={1600}
+              height={1067}
+              sizes="(max-width: 900px) 100vw, 440px"
+              priority
+            />
           </div>
-          <PhotoSlot
-            src="harry-hero.jpg"
-            alt="Harry Bone at the electronic drum kit in his home studio"
-            priority
-          />
+          <div className="hero-body stack g5">
+            <span className="t-mono muted">Drum lessons in Brislington, Bristol</span>
+            <h1 className="t-display">
+              Hey, I’m Harry.
+              <br />
+              I teach drums.
+            </h1>
+            <div className="btn-row">
+              <BookButton arrow />
+            </div>
+            <div className="trust t-small">
+              <span>Ages 7 and up</span>
+              <span>Enhanced DBS</span>
+              <span>Lessons from £20</span>
+            </div>
+          </div>
+        </div>
+        <div className="wrap">
+          <div className="stave-strip">
+            <Stave groove="rock" fill count label="A basic rock beat, written in drum notation" />
+          </div>
         </div>
       </section>
 
-      {/* 2. What are lessons like? */}
-      <section className={sectionClass}>
-        <div className="max-w-2xl mx-auto">
-          <h2 className={headingClass}>What lessons are like</h2>
-          <dl className="space-y-7 mb-10">
-            {[
-              { term: "Songs you love", desc: "Learn the tracks you actually want to play." },
-              { term: "A clear plan", desc: "Clear goals, visible progress, real results." },
-              { term: "All ages from 7", desc: "From age 7 upwards, beginners to advanced." },
-            ].map((line) => (
-              <div key={line.term}>
-                <dt className="text-lg font-semibold text-[var(--color-foreground)]">{line.term}</dt>
-                <dd className="text-lg text-[var(--color-muted)] leading-relaxed">{line.desc}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="text-lg text-[var(--color-muted)] leading-relaxed mb-10">
-            I teach from my home studio or come to yours, whichever works best.
-          </p>
-          <PhotoSlot src="photos/teaching.jpg" alt="Harry teaching a drum lesson" />
-          <p className="mt-10">
-            <a href="/lessons" className={textLink}>
+      {/* What are lessons like? */}
+      <section className="sec flush">
+        <div className="wrap score">
+          <SecHead mark="A" label="Lessons" title="What lessons are like" />
+          <div className="stack g5">
+            <div className="lines3">
+              {[
+                ["Songs you love", "Learn the tracks you actually want to play."],
+                ["A clear plan", "Clear goals, visible progress, real results."],
+                ["All ages from 7", "Beginners to advanced. Rockschool grades if you want them."],
+              ].map(([title, text], i) => (
+                <div key={title}>
+                  <span className="n">{i + 1}</span>
+                  <div className="stack g1">
+                    <h3 className="t-h3">{title}</h3>
+                    <p className="muted">{text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="where">
+              <p className="fact">At my studio or your home. No travel fee.</p>
+              <p className="fact">Electronic kit, so no noise worries.</p>
+            </div>
+            <Link className="link" href="/lessons">
               More about lessons
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* 3. Is he any good? */}
-      <section className={sectionClass}>
-        <div className="max-w-2xl mx-auto">
-          <h2 className={headingClass}>My playing</h2>
-          <VideoFacade
-            embedUrl="https://player.vimeo.com/video/1208131131?badge=0&autopause=0&player_id=0&app_id=58479"
-            title="Laid to Rest - Lamb of God | HarryDrums Cover"
-            label="Laid to Rest, Lamb of God. My drum cover."
-          />
-          <p className="mt-8 text-lg text-[var(--color-foreground)] leading-relaxed">
-            BMus RWCMD &middot; 20+ years playing &middot; teaching since 2018 &middot; enhanced DBS
-          </p>
-          <p className="mt-10">
-            <a href="/about" className={textLink}>
-              More about me
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* 4. What do others say? Written into the page so search engines can read it. */}
-      <section className={sectionClass}>
-        <div className="max-w-2xl mx-auto">
-          <h2 className={headingClass}>What students and parents say</h2>
-          <div className="space-y-12">
-            {reviews.map((r) => (
-              <figure key={r.name}>
-                <blockquote className="text-lg text-[var(--color-foreground)] leading-relaxed">
-                  &ldquo;{r.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-3 text-sm text-[var(--color-muted)]">
-                  {r.name}, {r.who}
-                </figcaption>
-              </figure>
-            ))}
+            </Link>
           </div>
-          <p className="mt-12">
-            <a href="/reviews" className={textLink}>
-              Read all reviews
-            </a>
-          </p>
         </div>
       </section>
 
-      {/* 5. How much? */}
-      <section className={sectionClass}>
-        <div className="max-w-2xl mx-auto">
-          <h2 className={headingClass}>Prices</h2>
-          <dl className="divide-y divide-[var(--color-card-border)] border-y border-[var(--color-card-border)]">
-            {prices.map((p) => (
-              <div key={p.label} className="flex items-baseline justify-between gap-4 py-5">
-                <dt className="text-lg text-[var(--color-foreground)]">
-                  {p.label}
-                  <span className="block text-sm text-[var(--color-muted)]">{p.length}</span>
-                </dt>
-                <dd className="text-2xl font-bold text-[var(--color-foreground)]">{p.price}</dd>
+      {/* Is he any good? */}
+      <section className="sec on-ink">
+        <div className="wrap score">
+          <SecHead mark="B" label="Playing" title="My playing" />
+          <div className="stack">
+            <div className="creds">
+              <div>
+                <b>BMus (Hons)</b>
+                <span>Royal Welsh College of Music &amp; Drama</span>
               </div>
-            ))}
-          </dl>
-          <p className="mt-8 text-lg text-[var(--color-muted)]">No sign-up fees, no contracts.</p>
+              <div>
+                <b>20+ years</b>
+                <span>playing</span>
+              </div>
+              <div>
+                <b>Since 2018</b>
+                <span>teaching</span>
+              </div>
+              <div>
+                <b>Enhanced DBS</b>
+                <span>on the update service</span>
+              </div>
+            </div>
+            <EmbedPoster
+              src={`https://www.youtube-nocookie.com/embed/videoseries?list=${PLAYLIST_ID}&autoplay=1&rel=0`}
+              title="Harry Bone Drums, practice showcase playlist"
+              ariaLabel="Play playlist: Grade 3 to Grade 8, plus double kick"
+              caption="Grade 3 to Grade 8, plus double kick."
+              sub="YouTube playlist · plays when you tap"
+              groove="double"
+            />
+            <div className="vid-links">
+              <a className="link" href={PLAYLIST_URL} target="_blank" rel="noopener noreferrer">
+                All my drum covers on YouTube
+              </a>
+            </div>
+            <Link className="link" href="/about">
+              More about me
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 6. How do I start? */}
-      <section className={`${sectionClass} pb-28`}>
-        <div className="max-w-2xl mx-auto">
-          <h2 className={headingClass}>Fancy giving it a go?</h2>
-          <p className="text-lg text-[var(--color-muted)] leading-relaxed mb-10">
-            Book a trial lesson for &pound;10. 30 minutes, no commitment. If my
-            teaching style clicks, we&apos;ll take it from there.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            <a href="/contact" className={primaryButton}>
-              Book a &pound;10 trial
-            </a>
-            <a
-              href="https://wa.me/447984263112"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={secondaryButton}
-            >
-              Message me on WhatsApp
-            </a>
+      {/* What do others say? Plain text, so search engines can read it. */}
+      <section className="sec flush">
+        <div className="wrap score">
+          <SecHead mark="C" label="Reviews" title="What students and parents say" />
+          <div className="stack g5">
+            <div className="reviews">
+              {REVIEWS.map((r) => (
+                <figure key={r.name} className="review">
+                  <blockquote>{r.quote}</blockquote>
+                  <figcaption>
+                    <b>{r.name}</b>
+                    <span>{r.who}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <Link className="link" href="/reviews">
+              Read all reviews
+            </Link>
           </div>
-          <p className="text-lg text-[var(--color-foreground)]">
-            Based in Brislington. I&apos;ll send directions when we book.
-          </p>
         </div>
+      </section>
+
+      {/* How much? */}
+      <section className="sec alt">
+        <div className="wrap score">
+          <SecHead mark="D" label="Prices" title="Prices" />
+          <PriceList note="No sign-up fees, no contracts. Lessons roll on, usually 4 a month." />
+        </div>
+      </section>
+
+      {/* How do I start? */}
+      <section className="sec" id="start">
+        <div className="wrap score">
+          <SecHead mark="E" label="Start" title="Fancy giving it a go?" />
+          <div className="cta">
+            <p className="t-lead">
+              Book a trial lesson for £10. 30 minutes, no commitment. If my teaching style clicks, we’ll take it
+              from there.
+            </p>
+            <div className="btn-row">
+              <BookButton arrow />
+            </div>
+            <p className="muted">
+              Based in Brislington. I’ll send directions when we book. I reply within 24 hours. Rather message?{" "}
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                WhatsApp me
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+        <FinalBarline />
       </section>
     </main>
   );
 }
-
-// Green is for the primary button only. Everything else is ink and space.
-const primaryButton =
-  "block sm:inline-block text-center bg-[var(--color-green)] text-white px-7 py-4 rounded-lg text-lg font-semibold hover:bg-[var(--color-green-dark)] transition-colors";
-const secondaryButton =
-  "block sm:inline-block text-center border border-[var(--color-card-border)] text-[var(--color-foreground)] px-7 py-4 rounded-lg text-lg font-medium hover:border-[var(--color-foreground)] transition-colors";
-const textLink =
-  "text-lg text-[var(--color-foreground)] underline underline-offset-4 decoration-[var(--color-card-border)] hover:decoration-[var(--color-foreground)]";
-const sectionClass = "px-6 py-20 sm:py-24 border-t border-[var(--color-card-border)]";
-const headingClass = "text-3xl font-bold mb-10 text-[var(--color-foreground)]";
