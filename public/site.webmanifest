@@ -1,0 +1,11 @@
+{
+  "name": "Harry Bone Drum Lessons",
+  "short_name": "Harry Bone Drums",
+  "icons": [
+    { "src": "/icons/hb-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/hb-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#00C46B",
+  "background_color": "#F5F1E8",
+  "display": "browser"
+}

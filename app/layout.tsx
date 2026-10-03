@@ -42,13 +42,17 @@ export const metadata: Metadata = {
   },
   description:
     "Drum lessons in Brislington, Bristol for ages 7 and up. BMus (Hons) RWCMD, Enhanced DBS. At my studio or your home. Book a £10 trial lesson.",
+  // Design's icon (Oct 2026). /favicon.ico (16+32+48) is served from the
+  // root as well, for Google and browsers that ask for it directly.
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+      { url: "/icons/hb-favicon.svg", type: "image/svg+xml" },
+      { url: "/icons/hb-favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/hb-favicon-16.png", type: "image/png", sizes: "16x16" },
     ],
-    apple: "/apple-touch-icon.png",
+    apple: "/icons/hb-icon-180.png",
   },
+  manifest: "/site.webmanifest",
   authors: [{ name: "Harry Bone" }],
   creator: "Harry Bone",
   openGraph: {

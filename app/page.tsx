@@ -32,7 +32,7 @@ const jsonLd = {
       telephone: "+447984263112",
       email: "harrybonedrumlessons@gmail.com",
       image: `${SITE_URL}/harry-hero-1600.jpg`,
-      logo: `${SITE_URL}/favicon.png`,
+      logo: `${SITE_URL}/icons/hb-icon-512.png`,
       address: {
         "@type": "PostalAddress",
         addressLocality: "Brislington",
